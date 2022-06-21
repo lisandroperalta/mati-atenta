@@ -104,20 +104,12 @@ class Pincel {
 
   constructor() {
 
-    this.x = random(0, windowWidth);
-    this.y = random(0, windowHeight);
-    this.posZ = random(0.0, -1)
-    this.posicionAnteriorX = this.x;
-    this.posicionAnteriorY = this.y;
-    this.xoffset = random(10);
-    this.yoffset = random(10);
-    this.velocidadOffsetx = random(0.001, 0.0015);
-    this.velocidadOffsety = random(0.001, 0.0015);
-    this.posicion = 0;
+this.reiniciarPincel ();
   }
 reiniciarPincel (){
-  this.x = random(0, windowWidth);
-  this.y = random(0, windowHeight);
+  var margen= 100* ratioDeEscala;
+  this.x = random(0+margen, windowWidth-margen);
+  this.y = random(0+margen*2, windowHeight-margen*2);
   this.posZ = random(0.0, -1)
   this.posicionAnteriorX = this.x;
   this.posicionAnteriorY = this.y;
