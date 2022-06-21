@@ -11,6 +11,7 @@ let miFuente;
 let misPinceles = [];
 let misTexturasPinceles = [];
 
+let  ratioDeEscala= 1;
 
 
 ///////////////////////////////////////77 PRELOAD
@@ -33,7 +34,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   buffer1 = createGraphics(windowWidth, windowHeight, WEBGL);
   buffer2 = createGraphics(windowWidth, windowHeight, WEBGL);
-
+ratioDeEscala = windowWidth / 1500;
+  
   tamanioFuente = windowWidth / 20;
   button = createButton("play/stop");
   button.position(10, 10);
@@ -144,9 +146,8 @@ reiniciarPincel (){
 
     buffer1.translate(this.x, this.y);
     buffer1.texture(misTexturasPinceles[i]);
-    var anchoPlane = windowWidth / 1500;
 
-    buffer1.plane(misTexturasPinceles[i].width*anchoPlane, misTexturasPinceles[i].height*anchoPlane, 150, 150);
+    buffer1.plane(misTexturasPinceles[i].width*ratioDeEscala, misTexturasPinceles[i].height*ratioDeEscala, 150, 150);
     buffer1.pop();
   }
 
@@ -268,5 +269,5 @@ function windowResized() {
     misPinceles[i].reiniciarPincel();
  
   }
-
+ratioDeEscala = windowWidth / 1500;
 }
