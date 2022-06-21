@@ -11,7 +11,8 @@ let miFuente;
 let misPinceles = [];
 let misTexturasPinceles = [];
 
-var escala = 1.005;
+
+
 ///////////////////////////////////////77 PRELOAD
 function preload() {
   mySound = loadSound(
@@ -46,38 +47,37 @@ function setup() {
   background(0);
   frameRate(30);
   smooth();
-  setAttributes('depth', true);
+  setAttributes('antialias', true);
+  setAttributes('depth', false);
 
+  setAttributes('stencil', true);
 
 }
 
 
 /*DRAW******************************************************************* */
 function draw() {
-//background(0);
-//dibujarLinea();
-
-
+  //dibujarLinea();
   buffer1.push();
-  buffer1.noStroke();
-
+  buffer1.noStroke(0);
   buffer1.blendMode(ADD);
-  buffer1.translate(0, 0, -2);
+  buffer1.translate(0, 0, 0);
   buffer1.texture(buffer2); // meto la textura de salida en la entrada
   buffer1.plane(windowWidth, windowHeight); // dibujo la textura de salida en la entrada  
 
   //hago todo lo que quiero hacer
+
   dibujarDedo();
+  buffer1.noStroke();
+  buffer1.blendMode(ADD);
   for (let i = 0; i < misPinceles.length; i++) {
     //misPinceles[i].mover();
     misPinceles[i].moverNoise();
     misPinceles[i].dibujar3d(i);
   }
 
-
-
+  dibujarTexto3D();
   buffer1.pop();
-
 
 
 
@@ -86,12 +86,13 @@ function draw() {
   buffer2.noStroke();
   buffer2.scale(1.01, 1.01); //hago transformaciones
   buffer2.texture(buffer1); //meto la textura de salida
+  
   buffer2.plane(windowWidth, windowHeight); //dibujo la textura de salida
   buffer2.pop();
 
   image(buffer2, 0, 0, windowWidth, windowHeight);
 
-  dibujarTexto();
+
 
 }
 ////////////////////////objeto pincel
@@ -104,25 +105,48 @@ class Pincel {
     this.x = random(0, windowWidth);
     this.y = random(0, windowHeight);
     this.posZ = random(0.0, -1)
-
     this.posicionAnteriorX = this.x;
     this.posicionAnteriorY = this.y;
     this.xoffset = random(10);
-    this.velocidadOffset = random(0.001, 0.0015);
+    this.yoffset = random(10);
+    this.velocidadOffsetx = random(0.001, 0.0015);
+    this.velocidadOffsety = random(0.001, 0.0015);
     this.posicion = 0;
   }
+reiniciarPincel (){
+  this.x = random(0, windowWidth);
+  this.y = random(0, windowHeight);
+  this.posZ = random(0.0, -1)
+  this.posicionAnteriorX = this.x;
+  this.posicionAnteriorY = this.y;
+  this.xoffset = random(10);
+  this.yoffset = random(10);
+  this.velocidadOffsetx = random(0.001, 0.0015);
+  this.velocidadOffsety = random(0.001, 0.0015);
+  this.posicion = 0;
 
+
+
+
+}
   moverNoise() {
     this.x += map(noise(this.xoffset), 0, 1, -0.5, 0.5);
-    this.xoffset += this.velocidadOffset;
+    this.xoffset += this.velocidadOffsetx;
+    this.y += map(noise(this.yoffset), 0, 1, -0.5, 0.5);
+    this.yoffset += this.velocidadOffsety;
+
   }
 
   dibujar3d(i) {
     buffer1.push();
+
     buffer1.translate(-windowWidth / 2, -windowHeight / 2);
+
     buffer1.translate(this.x, this.y);
     buffer1.texture(misTexturasPinceles[i]);
-    buffer1.plane(misTexturasPinceles[i].width, misTexturasPinceles[i].height);
+    var anchoPlane = windowWidth / 1500;
+
+    buffer1.plane(misTexturasPinceles[i].width*anchoPlane, misTexturasPinceles[i].height*anchoPlane, 150, 150);
     buffer1.pop();
   }
 
@@ -133,18 +157,18 @@ class Pincel {
 //// dibujar linea
 
 
-function dibujarDedo(){
-if(mouseX != pmouseX || mouseY != pmouseY){
-  push();
-  imageMode(CENTER);
-  buffer1.tint(255,100);
+function dibujarDedo() {
+  if (mouseX != pmouseX || mouseY != pmouseY) {
+    push();
+    imageMode(CENTER);
+    buffer1.tint(255);
 
-  buffer1.image(miDedo,mouseX-width/2,mouseY-height/2,100,100);
-  buffer1.tint(255,5);
+    buffer1.image(miDedo, mouseX - width / 2, mouseY - height / 2, 100, 100);
+    buffer1.tint(255);
 
-  pop();
+    pop();
 
-}
+  }
 
 }
 
@@ -167,6 +191,24 @@ function dibujarLinea() {
 
 
 /////////////////////////  dibujar texto
+
+
+function dibujarTexto3D() {
+  push();
+  buffer1.stroke(0);
+  buffer1.strokeWeight(2);
+  buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+  buffer1.textSize(windowWidth / 20);
+  buffer1.tamanioFuente = windowWidth / 20;
+  buffer1.textFont(miFuente);
+
+  //translate(0,0);
+  buffer1.text(windowWidth, 0, 0);
+  pop();
+}
+
+
+
 function dibujarTexto() {
   push();
   stroke(0);
@@ -220,6 +262,11 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   buffer1.resizeCanvas(windowWidth, windowHeight);
   buffer2.resizeCanvas(windowWidth, windowHeight);
-
   background(0);
+  for (let i = 0; i < misPinceles.length; i++) {
+    //misPinceles[i].mover();
+    misPinceles[i].reiniciarPincel();
+ 
+  }
+
 }
