@@ -25,7 +25,7 @@ function preload() {
 }
 ////////////////////////////////SETUP
 function setup() {
-  createCanvas(windowWidth, windowHeight, WEBGL);
+  createCanvas(windowWidth, windowHeight);
   buffer1 = createGraphics(windowWidth, windowHeight, WEBGL);
   buffer2 = createGraphics(windowWidth, windowHeight, WEBGL);
 
@@ -50,24 +50,54 @@ function setup() {
 
 /*DRAW******************************************************************* */
 function draw() {
-  //background(0);
-  rotateX(map(mouseY, 0, windowHeight, -0.5, 0.5));
-  rotateY(map(mouseX, 0, windowWidth, -0.5, 0.5));
-  translate(-windowWidth / 2, -windowHeight / 2);
-  push();
-  imageMode(CENTER);
-  //var miFondo = get();
-  //image(miFondo, windowWidth / 2, windowHeight / 2, windowWidth * escala, windowHeight * escala);
-  //fill(0, 5);
-  //rect(0, 0, width, height);
-  pop();
 
-  for (let i = 0; i < misPinceles.length; i++) {
-    //misPinceles[i].mover();
-    misPinceles[i].moverNoise();
-    misPinceles[i].dibujar3d(i);
-  }
+  buffer1.push();
+  buffer1.noStroke();
 
+  buffer1.texture(buffer2); // meto la textura de salida en la entrada
+  buffer1.translate(0, 0, -2);
+  buffer1.plane(windowWidth, windowHeight); // dibujo la textura de salida en la entrada
+
+  //hago todo lo que quiero hacer
+
+  //  buffer1.texture(wiley);
+
+  //  cg.translate(sin(frameCount *0.05)*200, cos(frameCount *0.01)*200);
+  //buffer1.translate(sin(frameCount*0.01),cos(frameCount*0.01));
+  // buffer1.translate(-100, -100,-50);
+  //buffer1.rotateX(frameCount * 0.01);
+  //buffer1.rotateY(frameCount * 0.01);
+  //buffer1.plane(200,200);
+  //buffer1.translate(-1000, -500, -50);
+  /*
+    for (let i = 0; i < misPinceles.length; i++) {
+      //misPinceles[i].mover();
+      misPinceles[i].moverNoise();
+      misPinceles[i].dibujar3d(i);
+    }*/
+  
+    for (let i = 0; i < misPinceles.length; i++) {
+      //misPinceles[i].mover();
+     misPinceles[i].moverNoise();
+      misPinceles[i].dibujar3d(i);
+    }
+  // buffer1.texture(misTexturasPinceles[1]);
+  // buffer1.plane(misTexturasPinceles[1].width, misTexturasPinceles[1].height);
+
+
+
+
+  buffer1.pop();
+
+  //meto lo que hice en la imagen de salida para reusarla despues
+  buffer2.push();
+  buffer2.noStroke();
+  buffer2.scale(1.001, 1.05); //hago transformaciones
+  buffer2.texture(buffer1); //meto la textura de salida
+  buffer2.plane(windowWidth, windowHeight); //dibujo la textura de salida
+  buffer2.pop();
+
+  image(buffer2, 0, 0, windowWidth, windowHeight);
 
   dibujarLinea();
   dibujarTexto();
@@ -82,83 +112,40 @@ class Pincel {
 
     this.x = random(0, windowWidth);
     this.y = random(0, windowHeight);
-    this.velocidadHueR = random(0, 0.05)
-    this.velocidadHueG = random(0, 0.05)
-    this.velocidadHueB = random(0, 0.05)
     this.posZ = random(0.0, -1)
-    this.destinoX = this.x;
-    this.destinoY = this.y;
+
     this.posicionAnteriorX = this.x;
     this.posicionAnteriorY = this.y;
-    this.frecuenciaAzar = random(60, 220);
     this.xoffset = random(10);
-    this.velocidadOffset=random(0.001,0.0015);
+    this.velocidadOffset = random(0.001, 0.0015);
     this.posicion = 0;
   }
 
 
-  mover() {
-    if (frameCount % this.frecuenciaAzar > 0 && frameCount % this.frecuenciaAzar < 1) {
-      this.destinoX = this.x + random(-100, 100);
-      this.destinoY = this.y + random(-20, 20);
-    }
 
-
-
-    this.x = lerp(this.posicionAnteriorX, this.destinoX, 0.01);
-    this.posicionAnteriorX = this.x;
-
-
-    this.y = lerp(this.posicionAnteriorY, this.destinoY, 0.01);
-    this.posicionAnteriorY = this.y;
-
-  }
 
 
   moverNoise() {
-
-
-
-
-   // this.x = lerp(this.posicionAnteriorX, this.destinoX, 0.01);
-   this.x += map (noise(this.xoffset),0,1,-0.5,0.5);
-   
-   this.xoffset +=this.velocidadOffset;
-
-
-
-
+    this.x += map(noise(this.xoffset), 0, 1, -0.5, 0.5);
+    this.xoffset += this.velocidadOffset;
   }
 
-
-  moverviejo() {
-
-
-    this.posicionX = map(noise(this.xoffset), -100, 100);
-    this.x += this.posicionX;
-    this.xoffset += 0.01;
-
-  }
-
-  dibujar2d() {
-    push();
-    imageMode(CENTER);
-    translate(this.x, this.y);
-    image(this.miTextura, 0, 0, 125, 250);
-    pop();
-  }
 
 
   dibujar3d(i) {
-    push();
-    translate(0.5, 0.5)
-    imageMode(CENTER);
-    translate(this.x, this.y, this.posZ);
-    texture(misTexturasPinceles[i]);
-    noStroke();
-    blendMode(ADD);
-    plane(misTexturasPinceles[i].width, misTexturasPinceles[i].height);
-    pop();
+    buffer1.push();
+    //buffer1.translate(-100,-100);
+    // buffer1.imageMode(CENTER);
+    // buffer1.translate(this.x, this.y, this.posZ);
+    // buffer1.texture(misTexturasPinceles[i]);
+    // buffer1.noStroke();
+    // buffer1.plane(misTexturasPinceles[i].width, misTexturasPinceles[i].height);
+    // buffer1.pop();
+    buffer1.translate(-windowWidth/2, -windowHeight/2);
+    buffer1.translate(this.x, this.y);
+    buffer1.texture(misTexturasPinceles[i]);
+    buffer1.plane(misTexturasPinceles[i].width, misTexturasPinceles[i].height);
+    buffer1.pop();
   }
 
 
