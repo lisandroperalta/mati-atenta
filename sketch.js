@@ -34,7 +34,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   buffer1 = createGraphics(windowWidth, windowHeight, WEBGL);
   buffer2 = createGraphics(windowWidth, windowHeight, WEBGL);
-  ratioDeEscala = windowWidth / 1920;
+  ratioDeEscala = constrain (windowWidth / 1920,0.3,1.2);
 
   tamanioFuente = windowWidth / 20;
   button = createButton("play/stop");
@@ -118,7 +118,7 @@ class Pincel {
   reiniciarPincel() {
     var margen = 200 * ratioDeEscala;
     this.x = random(0 + margen, windowWidth - margen);
-    this.y = random(0 + margen * 4, windowHeight - margen * 4);
+    this.y = random(0 + margen * 2, windowHeight - margen * 2);
     this.posZ = random(0.0, -1)
     this.posicionAnteriorX = this.x;
     this.posicionAnteriorY = this.y;
@@ -270,5 +270,5 @@ function windowResized() {
     misPinceles[i].reiniciarPincel();
 
   }
-  ratioDeEscala = windowWidth / 1920;
+  ratioDeEscala = constrain (windowWidth / 1920,0.3,1.2);
 }
