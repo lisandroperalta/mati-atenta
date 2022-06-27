@@ -34,7 +34,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   buffer1 = createGraphics(windowWidth, windowHeight, WEBGL);
   buffer2 = createGraphics(windowWidth, windowHeight, WEBGL);
-  ratioDeEscala = constrain (windowWidth / 1920,0.3,1.2);
+  ratioDeEscala = constrain(windowWidth / 1920, 0.3, 1.2);
 
   tamanioFuente = windowWidth / 20;
   button = createButton("play/stop");
@@ -47,10 +47,10 @@ function setup() {
 
 
   background(0);
-  frameRate(30);
+  frameRate(60);
   smooth();
-  setAttributes('antialias', true);
-  setAttributes('depth', false);
+  //setAttributes('antialias', true);
+  //setAttributes('depth', false);
 
   setAttributes('stencil', true);
 
@@ -79,6 +79,8 @@ function draw() {
   }
 
   dibujarTexto3D();
+  //dibujarTexto();
+
   buffer1.pop();
 
 
@@ -89,7 +91,7 @@ function draw() {
 
   let noiseTranslateX = map(noise(frameCount * 0.005 + 150), 0, 1, -5, 5);
   let noiseTranslateY = map(noise(frameCount * 0.005), 0, 1, -5, 5);
-  let noiseScale = map(noise(frameCount * 0.005+750), 0, 1, 0.999, 1.01);
+  let noiseScale = map(noise(frameCount * 0.005 + 750), 0, 1, 0.999, 1.01);
 
   buffer2.translate(noiseTranslateX, noiseTranslateY); //hago transformaciones
 
@@ -104,6 +106,8 @@ function draw() {
   if (!focused) {
     mySound.pause();
   }
+
+
 
 }
 ////////////////////////objeto pincel
@@ -148,6 +152,18 @@ class Pincel {
     buffer1.texture(misTexturasPinceles[i]);
 
     buffer1.plane(misTexturasPinceles[i].width * ratioDeEscala, misTexturasPinceles[i].height * ratioDeEscala, 150, 150);
+    //buffer1.textSize(ratioDeEscala * 10);
+    //buffer1.textFont(miFuente);
+    //buffer1.text(this.x, 0, 0);
+    if (this.x < 0 || this.x > windowWidth) {
+      this.reiniciarPincel();
+
+    }
+    if (this.y < 0 || this.y > windowHeight) {
+      this.reiniciarPincel();
+
+    }
+
     buffer1.pop();
   }
 
@@ -155,7 +171,7 @@ class Pincel {
 
 }
 
-//// dibujar linea
+//// dibujar dedo
 
 function dibujarDedo() {
   if (mouseX != pmouseX || mouseY != pmouseY) {
@@ -171,86 +187,75 @@ function dibujarDedo() {
 }
 
 
-function dibujarLinea() {
-  if (mouseX != pmouseX || mouseY != pmouseY) {
-    push();
-    stroke(
-      cos(frameCount * 0.05) * 255,
-      sin(frameCount * 0.01) * 255,
-      sin(frameCount * -0.03) * 255
-    );
-
-    strokeWeight(25);
-    // translate(windowWidth * -.5, windowHeight * -.5);
-    line(mouseX, mouseY, pmouseX, pmouseY);
-
-    pop();
-  }
-}
 
 
 /////////////////////////  dibujar texto
 
 
 function dibujarTexto3D() {
+
   push();
-  buffer1.stroke(0);
-  buffer1.strokeWeight(2);
-  buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
-  buffer1.textSize(90);
-  // buffer1.tamanioFuente = 500;
+  buffer1.stroke(255);
+  //  buffer1.strokeWeight(5000);
+  buffer1.textSize(ratioDeEscala * 100);
   buffer1.textFont(miFuente);
-  buffer1.translate(windowWidth / 2, windowHeight / 2)
   translate(0, 0);
-  buffer1.text(ratioDeEscala, 0, 0);
+  buffer1.textLeading(ratioDeEscala * 100);
+
+  //buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 255);
+  //buffer1.text(mySound.currentTime(), 100 + 5, windowHeight - 100 + 5);
+
+  //buffer1.fill(sin(frameCount * 0.013) + 100 * 100, sin(frameCount * 0.03) + 25 * 100, sin(frameCount * 0.010) * 255);
+  // buffer1.text(mySound.currentTime(), 100, windowHeight - 100);
+  buffer1.fill(sin(frameCount * 0.013) * 255, sin(frameCount * 0.03) * 255, sin(frameCount * 0.010) * 255);
+
+  buffer1.text(frameCount, windowWidth / 2, windowHeight / 2);
+
   pop();
+
+  if (mySound.currentTime() >= 0.01 && mySound.currentTime() <= 4) {
+    // fill(255);
+    push();
+    buffer1.translate(windowWidth / 2, windowHeight / 2)
+
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 255);
+    buffer1.text("Nuevo ciclo \ny vos estas atenta", -windowWidth / 2 + 5, -100 + 5);
+
+    buffer1.fill(sin(frameCount * 0.015) + 25 * 255, sin(frameCount * 0.02) + 25 * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("Nuevo ciclo \ny vos estas atenta", -windowWidth / 2, -100);
+
+    pop();
+  }
+
+
+  if (mySound.currentTime() >= 5 && mySound.currentTime() <= 9) {
+    // fill(255);
+    push();
+    buffer1.translate(windowWidth / 2, windowHeight / 2)
+
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 255);
+    buffer1.text("todo pasa en \ncualquier momento", -windowWidth / 2 + 5, -100 + 5);
+
+    buffer1.fill(sin(frameCount * 0.015) + 25 * 255, sin(frameCount * 0.02) + 25 * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("todo pasa en \ncualquier momento", -windowWidth / 2, -100);
+
+    pop();
+  }
+
+
+
 }
 
 
 
-function dibujarTexto() {
-  push();
-  stroke(0);
-  strokeWeight(2);
-  fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
-  textSize(windowWidth / 20);
-  tamanioFuente = windowWidth / 20;
-  textFont(miFuente);
-
-  //translate(0,0);
-
-  text(mySound.currentTime(), windowWidth * .1, windowHeight * 0.9);
-
-  if (mySound.currentTime() >= 0.01 && mySound.currentTime() <= 1) {
-    // fill(255);
-    strokeWeight(3);
-    textSize(tamanioFuente);
-    text("Nuevo ciclo y vos estas", windowWidth * .1, windowHeight * 0.1);
-  }
-  if (mySound.currentTime() >= 2.5 && mySound.currentTime() <= 3.7) {
-    // fill(255);
-    strokeWeight(3);
-    textSize(tamanioFuente);
-    text("ATENTA", windowWidth * .1, windowHeight * 0.2);
-  }
-  if (mySound.currentTime() >= 5 && mySound.currentTime() <= 8) {
-    // fill(255);
-    strokeWeight(3);
-    textSize(tamanioFuente);
-    text("Todo pasa en cualquier momento", windowWidth * .1, windowHeight * 0.3);
-  }
-
-
-  pop();
-
-}
 
 
 /////////// extras
 function reproducir() {
   if (mySound.isPlaying()) {
-    mySound.
-    mySound.stop();
+    mySound.pause();
   } else {
     mySound.play();
   }
@@ -270,5 +275,5 @@ function windowResized() {
     misPinceles[i].reiniciarPincel();
 
   }
-  ratioDeEscala = constrain (windowWidth / 1920,0.3,1.2);
+  ratioDeEscala = constrain(windowWidth / 1920, 0.3, 1.2);
 }
