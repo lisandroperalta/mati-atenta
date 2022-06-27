@@ -19,7 +19,7 @@ function preload() {
   mySound = loadSound(
     "https://cdn.glitch.global/bee415d4-7968-44e3-b990-559c3eb84a3a/atentaOGG2.ogg?v=1654291489499"
   );
-  miFuente = loadFont('assets/ELI5.0B-.TTF');
+  miFuente = loadFont('assets/Always Lovely.TTF');
   miTextura = loadImage('assets/27.png');
   miDedo = loadImage('assets/dedo.png');
 
@@ -47,7 +47,7 @@ function setup() {
 
 
   background(0);
-  frameRate(60);
+  frameRate(24);
   smooth();
   //setAttributes('antialias', true);
   //setAttributes('depth', false);
@@ -101,9 +101,17 @@ function draw() {
 
   buffer2.translate(noiseTranslateX, noiseTranslateY); //hago transformaciones
 
-  //buffer2.rotate(radians(0.2));
+  buffer2.rotateZ(radians(rotationZ));
   buffer2.texture(buffer1); //meto la textura de salida
   buffer2.scale(noiseScale); //hago transformaciones
+  if (mySound.currentTime() >= 131 && mySound.currentTime() <= 150){
+    buffer2.scale(0.99); //hago transformaciones
+  }
+  if (mySound.currentTime() >= 131 && mySound.currentTime() <= 160){
+  buffer2.rotate(radians(0.2));
+}
+ 
+ 
   buffer2.plane(windowWidth, windowHeight); //dibujo la textura de salida
   buffer2.pop();
 
@@ -284,7 +292,7 @@ function dibujarTexto3D() {
     buffer1.textSize(ratioDeEscala * 150);
     buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
     buffer1.text("Si a cada paso \ndimos lo mejor", -windowWidth / 2 + 5, -100 + 5);
-    buffer1.fill(sin(frameCount * 0.015)* 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
     buffer1.text("Si a cada paso \ndimos lo mejor", -windowWidth / 2, -100);
     pop();
   }
@@ -295,7 +303,7 @@ function dibujarTexto3D() {
     buffer1.textSize(ratioDeEscala * 150);
     buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
     buffer1.text("Vos tan zen \nestado de meditacion", -windowWidth / 2 + 5, -100 + 5);
-    buffer1.fill(sin(frameCount * 0.015)* 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
     buffer1.text("Vos tan zen \nestado de meditacion", -windowWidth / 2, -100);
     pop();
   }
@@ -306,7 +314,7 @@ function dibujarTexto3D() {
     buffer1.textSize(ratioDeEscala * 150);
     buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
     buffer1.text("Yo en silencio \nescuchando tu voz", -windowWidth / 2 + 5, -100 + 5);
-    buffer1.fill(sin(frameCount * 0.015)* 255, sin(frameCount * 0.02)  * 255, sin(frameCount * 0.011) * 255);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
     buffer1.text("Yo en silencio \nescuchando tu voz", -windowWidth / 2, -100);
     pop();
   }
@@ -329,7 +337,7 @@ function dibujarTexto3D() {
     buffer1.textSize(ratioDeEscala * 150);
     buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
     buffer1.text("Bienvenidas \nlas murallas", -windowWidth / 2 + 5, -100 + 5);
-    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02)* 255, sin(frameCount * 0.011) * 255);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
     buffer1.text("Bienvenidas \nlas murallas", -windowWidth / 2, -100);
     pop();
   }
@@ -385,7 +393,7 @@ function dibujarTexto3D() {
     buffer1.textSize(ratioDeEscala * 150);
     buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
     buffer1.text("que se alejan \ndel lugar", -windowWidth / 2 + 5, -100 + 5);
-    buffer1.fill(sin(frameCount * 0.015)  * 255, sin(frameCount * 0.02)  * 255, sin(frameCount * 0.011) * 255);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
     buffer1.text("que se alejan \ndel lugar", -windowWidth / 2, -100);
     pop();
   }
@@ -411,6 +419,98 @@ function dibujarTexto3D() {
     buffer1.text("vos volviendote \na quemar", -windowWidth / 2, -100);
     pop();
   }
+
+  if (mySound.currentTime() >= 113 && mySound.currentTime() <= 119) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("si sabés que \nya no dás más", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("si sabés que \nya no dás más", -windowWidth / 2, -100);
+    pop();
+  }
+
+  if (mySound.currentTime() >= 121 && mySound.currentTime() <= 126) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("¿Por qué no \nlo vas a intentar?", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("¿Por qué no \nlo vas a intentar?", -windowWidth / 2, -100);
+    pop();
+  }
+
+  if (mySound.currentTime() >= 128 && mySound.currentTime() <= 131) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("por lo menos hoy", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("por lo menos hoy", -windowWidth / 2, -100);
+    pop();
+  }
+
+
+
+  if (mySound.currentTime() >= 132 && mySound.currentTime() <= 135) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("un poco de amor", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("un poco de amor", -windowWidth / 2, -100);
+    pop();
+  }
+
+
+  if (mySound.currentTime() >= 136 && mySound.currentTime() <= 139) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("por lo mismo", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("por lo mismo", -windowWidth / 2, -100);
+    pop();
+  }
+
+  if (mySound.currentTime() >= 141 && mySound.currentTime() <= 143) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("a los mismos", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("a los mismos", -windowWidth / 2, -100);
+    pop();
+  }
+
+  if (mySound.currentTime() >= 145.5 && mySound.currentTime() <= 148.5) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("por lo mismo", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("por lo mismo", -windowWidth / 2, -100);
+    pop();
+  }
+
+  if (mySound.currentTime() >= 150 && mySound.currentTime() <= 153) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("a los mismos", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("a los mismos", -windowWidth / 2, -100);
+    pop();
+  }
+
 }
 
 
@@ -423,7 +523,7 @@ function reproducir() {
     mySound.pause();
   } else {
     mySound.play();
-  //  mySound.jump(86); //////////////////ATENTO A ESTO
+    mySound.jump(127); //////////////////ATENTO A ESTO
   }
 
 
