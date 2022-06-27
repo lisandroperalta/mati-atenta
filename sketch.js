@@ -37,8 +37,8 @@ function setup() {
   ratioDeEscala = constrain(windowWidth / 1920, 0.3, 1.2);
 
   tamanioFuente = windowWidth / 20;
-  button = createButton("play/stop");
-  button.position(10, 10);
+  button = createButton("play/pausa");
+  button.position(20, 20);
   button.mousePressed(reproducir);
   for (let i = 0; i < 29; i++) {
 
@@ -53,7 +53,7 @@ function setup() {
   //setAttributes('depth', false);
 
   setAttributes('stencil', true);
-  
+
   push();
   imageMode(CENTER);
   buffer1.tint(255, 255, 255, 255);
@@ -226,54 +226,191 @@ function dibujarTexto3D() {
   buffer1.stroke(255);
   //  buffer1.strokeWeight(5000);
   buffer1.textSize(ratioDeEscala * 100);
+  buffer1.textAlign(CENTER);
+
   buffer1.textFont(miFuente);
   translate(0, 0);
-  buffer1.textLeading(ratioDeEscala * 100);
+  buffer1.textLeading(ratioDeEscala * 150);
 
   //buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 255);
   //buffer1.text(mySound.currentTime(), 100 + 5, windowHeight - 100 + 5);
 
   //buffer1.fill(sin(frameCount * 0.013) + 100 * 100, sin(frameCount * 0.03) + 25 * 100, sin(frameCount * 0.010) * 255);
   // buffer1.text(mySound.currentTime(), 100, windowHeight - 100);
-  buffer1.fill(sin(frameCount * 0.013) * 255, sin(frameCount * 0.03) * 255, sin(frameCount * 0.010) * 255);
+  buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
 
-  buffer1.text(frameCount, windowWidth / 2, windowHeight / 2);
+  //buffer1.text(frameCount, windowWidth / 2, windowHeight / 2);
 
   pop();
 
   if (mySound.currentTime() >= 0.01 && mySound.currentTime() <= 4) {
-    // fill(255);
     push();
-    buffer1.translate(windowWidth / 2, windowHeight / 2)
-
+    buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(ratioDeEscala * 150);
-    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 255);
-    buffer1.text("Nuevo ciclo \ny vos estas atenta", -windowWidth / 2 + 5, -100 + 5);
-
-    buffer1.fill(sin(frameCount * 0.015) + 25 * 255, sin(frameCount * 0.02) + 25 * 255, sin(frameCount * 0.011) * 255);
-    buffer1.text("Nuevo ciclo \ny vos estas atenta", -windowWidth / 2, -100);
-
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2, -100);
     pop();
   }
 
 
   if (mySound.currentTime() >= 5 && mySound.currentTime() <= 9) {
-    // fill(255);
     push();
-    buffer1.translate(windowWidth / 2, windowHeight / 2)
-
+    buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(ratioDeEscala * 150);
-    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 255);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
     buffer1.text("todo pasa en \ncualquier momento", -windowWidth / 2 + 5, -100 + 5);
-
-    buffer1.fill(sin(frameCount * 0.015) + 25 * 255, sin(frameCount * 0.02) + 25 * 255, sin(frameCount * 0.011) * 255);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
     buffer1.text("todo pasa en \ncualquier momento", -windowWidth / 2, -100);
-
     pop();
   }
 
 
+  if (mySound.currentTime() >= 9 && mySound.currentTime() <= 13) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("No quiero que \ncedamos el control", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("No quiero que \ncedamos el control", -windowWidth / 2, -100);
+    pop();
+  }
 
+  if (mySound.currentTime() >= 13 && mySound.currentTime() <= 17) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("Si a cada paso \ndimos lo mejor", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015)* 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("Si a cada paso \ndimos lo mejor", -windowWidth / 2, -100);
+    pop();
+  }
+
+  if (mySound.currentTime() >= 17 && mySound.currentTime() <= 22) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("Vos tan zen \nestado de meditacion", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015)* 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("Vos tan zen \nestado de meditacion", -windowWidth / 2, -100);
+    pop();
+  }
+
+  if (mySound.currentTime() >= 22 && mySound.currentTime() <= 29) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("Yo en silencio \nescuchando tu voz", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015)* 255, sin(frameCount * 0.02)  * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("Yo en silencio \nescuchando tu voz", -windowWidth / 2, -100);
+    pop();
+  }
+
+  if (mySound.currentTime() >= 31 && mySound.currentTime() <= 37) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("Yo en silencio \nescuchando tu voz", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("Yo en silencio \nescuchando tu voz", -windowWidth / 2, -100);
+    pop();
+  }
+
+
+  if (mySound.currentTime() >= 59 && mySound.currentTime() <= 63) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("Bienvenidas \nlas murallas", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02)* 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("Bienvenidas \nlas murallas", -windowWidth / 2, -100);
+    pop();
+  }
+
+  if (mySound.currentTime() >= 64 && mySound.currentTime() <= 67) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("que vamos \na derribar", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("que vamos \na derribar", -windowWidth / 2, -100);
+    pop();
+  }
+
+  if (mySound.currentTime() >= 68.5 && mySound.currentTime() <= 72) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("la gran flecha \nya avanza", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("la gran flecha \nya avanza", -windowWidth / 2, -100);
+    pop();
+  }
+
+
+  if (mySound.currentTime() >= 73 && mySound.currentTime() <= 76) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("cruzando el \nhumedal", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("cruzando el \nhumedal", -windowWidth / 2, -100);
+    pop();
+  }
+
+  if (mySound.currentTime() >= 78 && mySound.currentTime() <= 82) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("son tus ojos \nlos que marchan", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("son tus ojos \nlos que marchan", -windowWidth / 2, -100);
+    pop();
+  }
+
+  if (mySound.currentTime() >= 82 && mySound.currentTime() <= 85) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("que se alejan \ndel lugar", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015)  * 255, sin(frameCount * 0.02)  * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("que se alejan \ndel lugar", -windowWidth / 2, -100);
+    pop();
+  }
+
+  if (mySound.currentTime() >= 86 && mySound.currentTime() <= 91) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("yo lamiendote \nlas llagas", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("yo lamiendote \nlas llagas", -windowWidth / 2, -100);
+    pop();
+  }
+
+  if (mySound.currentTime() >= 92 && mySound.currentTime() <= 95) {
+    push();
+    buffer1.translate(windowWidth, windowHeight / 2)
+    buffer1.textSize(ratioDeEscala * 150);
+    buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 100);
+    buffer1.text("vos volviendote \na quemar", -windowWidth / 2 + 5, -100 + 5);
+    buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+    buffer1.text("vos volviendote \na quemar", -windowWidth / 2, -100);
+    pop();
+  }
 }
 
 
@@ -286,6 +423,7 @@ function reproducir() {
     mySound.pause();
   } else {
     mySound.play();
+  //  mySound.jump(86); //////////////////ATENTO A ESTO
   }
 
 
