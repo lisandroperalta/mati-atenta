@@ -53,7 +53,12 @@ function setup() {
   //setAttributes('depth', false);
 
   setAttributes('stencil', true);
-
+  
+  push();
+  imageMode(CENTER);
+  buffer1.tint(255, 255, 255, 255);
+  buffer1.image(miDedo, -windowWidth / 2, -windowHeight / 2, windowWidth, windowHeight);
+  pop();
 }
 
 
@@ -74,6 +79,7 @@ function draw() {
   buffer1.blendMode(DIFFERENCE);
   for (let i = 0; i < misPinceles.length; i++) {
     //misPinceles[i].mover();
+    misPinceles[i].vivir();
     misPinceles[i].moverNoise();
     misPinceles[i].dibujar3d(i);
   }
@@ -132,10 +138,37 @@ class Pincel {
     this.velocidadOffsety = random(0.001, 0.0015);
     this.posicion = 0;
 
+    this.esperanzaDeVida = random(255, 765);
+    this.vidaActual = 0;
+    this.tintVida = 1;
+  }
 
+  vivir() {
+    this.vidaActual += 1;
+
+    if (this.vidaActual <= this.esperanzaDeVida) {
+
+      this.tintVida++;
+
+    }
+
+    if (this.vidaActual >= this.esperanzaDeVida) {
+
+      this.tintVida--;
+
+    }
+    if (this.tintVida <= 0) {
+
+      this.reiniciarPincel()
+
+    }
 
 
   }
+
+
+
+
   moverNoise() {
     this.x += map(noise(this.xoffset), 0, 1, -0.5, 0.5);
     this.xoffset += this.velocidadOffsetx;
@@ -146,15 +179,10 @@ class Pincel {
 
   dibujar3d(i) {
     buffer1.push();
-
-
     buffer1.translate(this.x, this.y);
+    buffer1.tint(255, this.tintVida);
     buffer1.texture(misTexturasPinceles[i]);
-
     buffer1.plane(misTexturasPinceles[i].width * ratioDeEscala, misTexturasPinceles[i].height * ratioDeEscala, 150, 150);
-    //buffer1.textSize(ratioDeEscala * 10);
-    //buffer1.textFont(miFuente);
-    //buffer1.text(this.x, 0, 0);
     if (this.x < 0 || this.x > windowWidth) {
       this.reiniciarPincel();
 
@@ -276,4 +304,11 @@ function windowResized() {
 
   }
   ratioDeEscala = constrain(windowWidth / 1920, 0.3, 1.2);
+
+  push();
+  imageMode(CENTER);
+  buffer1.tint(255, 255, 255, 255);
+  buffer1.image(miDedo, -windowWidth / 2, -windowHeight / 2, windowWidth, windowHeight);
+  pop();
+
 }
