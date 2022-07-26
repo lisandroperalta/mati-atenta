@@ -99,9 +99,27 @@ function draw() {
   let noiseTranslateY = map(noise(frameCount * 0.005), 0, 1, -5, 5);
   let noiseScale = map(noise(frameCount * 0.005 + 750), 0, 1, 0.999, 1.01);
 
+ 
   buffer2.translate(noiseTranslateX, noiseTranslateY); //hago transformaciones
 
-  buffer2.rotateZ(radians(rotationZ));
+  buffer2.rotateZ(radians(rotationY/50));
+  buffer2.translate(radians(rotationZ*10), 0);;
+  
+  
+  
+////////////////////////
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  ///////////////////////////////////////
+  
   buffer2.texture(buffer1); //meto la textura de salida
   buffer2.scale(noiseScale); //hago transformaciones
   if (mySound.currentTime() >= 131 && mySound.currentTime() <= 150){
