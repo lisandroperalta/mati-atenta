@@ -19,7 +19,7 @@ function preload() {
   mySound = loadSound(
     "https://cdn.glitch.global/bee415d4-7968-44e3-b990-559c3eb84a3a/atentaOGG2.ogg?v=1654291489499"
   );
-  miFuente = loadFont('assets/Always Lovely.TTF');
+  miFuente = loadFont('assets/Always Lovely.ttf');
   miTextura = loadImage('assets/27.png');
   miDedo = loadImage('assets/dedo.png');
 
@@ -523,7 +523,7 @@ function reproducir() {
     mySound.pause();
   } else {
     mySound.play();
-    mySound.jump(127); //////////////////ATENTO A ESTO
+    //mySound.jump(127); //////////////////ATENTO A ESTO
   }
 
 
