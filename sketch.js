@@ -46,8 +46,6 @@ function setup() {
   background(0);
   frameRate(24);
   smooth();
-  //setAttributes('antialias', true);
-  //setAttributes('depth', false);
 
   setAttributes('stencil', true);
 
