@@ -16,11 +16,8 @@ let ratioDeEscala = 1;
 
 ///////////////////////////////////////77 PRELOAD
 function preload() {
-  mySound = loadSound(
-    "https://cdn.glitch.global/bee415d4-7968-44e3-b990-559c3eb84a3a/atentaOGG2.ogg?v=1654291489499"
-  );
+  mySound = loadSound('assests/atentaOGG.ogg');
   miFuente = loadFont('assets/Qanoar.otf');
-  miTextura = loadImage('assets/27.png');
   miDedo = loadImage('assets/dedo.png');
 
   for (let i = 0; i < 29; i++) {
