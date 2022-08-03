@@ -40,6 +40,13 @@ body {
 
 }
 
+button {
+
+  /* background-color: #fff; */
+  opacity: 0.5;
+
+}
+
 canvas {
   display: block;
 }
