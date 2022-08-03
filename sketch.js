@@ -97,8 +97,9 @@ function draw() {
 
   buffer2.translate(noiseTranslateX, noiseTranslateY); //hago transformaciones
 
-  buffer2.rotateZ(radians(rotationY / 50));
-  buffer2.translate(radians(rotationZ * 10), 0);;
+  buffer2.rotateZ(radians(rotationY / 5));
+  let miTraslacion =  map(radians(rotationZ * 10,0,360,-10,10));
+  buffer2.translate(radians(miTraslacion * 10), 0);;
 
 
 
