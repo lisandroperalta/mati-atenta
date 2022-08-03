@@ -1,10 +1,44 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   overscroll-behavior-y: contain;
+  background-color: black;
+
+}
+@font-face {
+  font-family: Qanoar;
+  src: url("assets/Qanoar.otf") format("opentype");
+}
+.loadingclass {
+
+  color: white;
+  /* background: #ffbd17; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.textoCargando {
+
+
+  font-family: 'Qanoar', Arial, sans-serif;
+  font-weight:normal;
+  font-style:normal;
+  text-align: center;
+font-size:xx-large;
+color: aliceblue;
+
+/* background: #06c; */
+flex: 0 0 500px;
+
 
 }
 
 canvas {
   display: block;
 }
+
