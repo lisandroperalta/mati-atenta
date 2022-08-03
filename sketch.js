@@ -94,13 +94,12 @@ function draw() {
   let noiseTranslateY = map(noise(frameCount * 0.005), 0, 1, -5, 5);
   let noiseScale = map(noise(frameCount * 0.005 + 750), 0, 1, 0.999, 1.01);
 
-
+  push();
   buffer2.translate(noiseTranslateX, noiseTranslateY); //hago transformaciones
-
-  buffer2.rotateZ(radians(rotationY / 15));
-  let miTraslacion =  map(rotationZ,0,360,-2,2);
+  buffer2.rotateZ(radians(rotationY / 25));
+  let miTraslacion = map(rotationZ, 0, 360, -2, 2);
   buffer2.translate(miTraslacion, 0);;
-
+  pop();
 
 
   ////////////////////////
