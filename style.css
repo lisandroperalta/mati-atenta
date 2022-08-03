@@ -6,10 +6,12 @@ body {
   background-color: black;
 
 }
+
 @font-face {
   font-family: Qanoar;
   src: url("assets/Qanoar.otf") format("opentype");
 }
+
 .loadingclass {
 
   color: white;
@@ -26,14 +28,14 @@ body {
 
 
   font-family: 'Qanoar', Arial, sans-serif;
-  font-weight:normal;
-  font-style:normal;
+  font-weight: normal;
+  font-style: normal;
   text-align: center;
-font-size:xx-large;
-color: aliceblue;
+  font-size: xx-large;
+  color: aliceblue;
 
-/* background: #06c; */
-flex: 0 0 500px;
+  /* background: #06c; */
+  flex: 0 0 500px;
 
 
 }
@@ -41,4 +43,3 @@ flex: 0 0 500px;
 canvas {
   display: block;
 }
-
