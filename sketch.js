@@ -17,7 +17,10 @@ let ratioDeEscala = 1;
 ///////////////////////////////////////77 PRELOAD
 function preload() {
   mySound = loadSound('assets/atentaOGG.ogg');
-  miFuente = loadFont('assets/Qanoar.otf');
+
+  // miFuente = loadFont('assets/Qanoar.otf');
+  miFuente = loadFont('assets/MADE SAONARA 2 PERSONAL USE.otf');
+
   miDedo = loadImage('assets/dedo.png');
 
   for (let i = 0; i < 29; i++) {
