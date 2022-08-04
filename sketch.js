@@ -44,14 +44,10 @@ function setup() {
 
     misPinceles[i] = new Pincel();
   }
-
-
   background(0);
   frameRate(24);
   smooth();
-
   setAttributes('stencil', true);
-
   push();
   imageMode(CENTER);
   buffer1.tint(255, 255, 255, 255);
@@ -245,7 +241,7 @@ function dibujarDedo() {
 
 
 function dibujarTexto3D() {
-  let miColorFront = color(244, 122, 158);
+  let miColorFront = color(230,200,90);
   let miColorBack = color(sin(frameCount * 0.015) * 200 + 55, sin(frameCount * 0.02) * 200 + 55, sin(frameCount * 0.011) * 200 + 55);
   let miEscala = ratioDeEscala * 100;
   let disTanciaSombra = 2.5;
