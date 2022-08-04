@@ -19,7 +19,7 @@ function preload() {
   mySound = loadSound('assets/atentaOGG.ogg');
 
   // miFuente = loadFont('assets/Qanoar.otf');
-  miFuente = loadFont('assets/MADE SAONARA 2 PERSONAL USE.otf');
+  miFuente = loadFont('assets/Qanoar.otf');
 
   miDedo = loadImage('assets/dedo.png');
 
