@@ -157,7 +157,7 @@ function draw() {
     textSize(64);
     textAlign(CENTER);
 
-    text(cantAssetsCargados, width / 2, height / 2);
+    text("Cargando "+cantAssetsCargados+"/32", width / 2, height / 2);
 
 
   }
