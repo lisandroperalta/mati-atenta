@@ -43,13 +43,6 @@ function setup() {
   }
 
 
-
-
-
-
-
-
-
   createCanvas(windowWidth, windowHeight);
   buffer1 = createGraphics(windowWidth, windowHeight, WEBGL);
   buffer2 = createGraphics(windowWidth, windowHeight, WEBGL);
