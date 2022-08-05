@@ -154,11 +154,9 @@ function draw() {
     //aca hago todo lo que se va amostrar mientras cargo
     background(0);
     fill(255);
-    textSize(64);
+    textSize(24);
     textAlign(CENTER);
-
-    text("Cargando "+cantAssetsCargados+"/32", width / 2, height / 2);
-
+    text("Cargando " + cantAssetsCargados + "/32...", width / 2, height / 2);
 
   }
 }
