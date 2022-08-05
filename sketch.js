@@ -12,25 +12,44 @@ let misPinceles = [];
 let misTexturasPinceles = [];
 
 let ratioDeEscala = 1;
+let cargando = true;
+let cantAssetsTotal = 32;
+let cantAssetsCargados = 0;
+/////////////////////////////////////// PRELOAD
+// function preload() {
+//   mySound = loadSound('assets/atentaOGG.ogg', cargue);
+
+//   // miFuente = loadFont('assets/Qanoar.otf');
+//   miFuente = loadFont('assets/Qanoar.otf');
+
+//   miDedo = loadImage('assets/dedo.png');
+
+//   for (let i = 0; i < 29; i++) {
+//     misTexturasPinceles[i] = loadImage('assets/' + i + '.png');
+//   }
 
 
-///////////////////////////////////////77 PRELOAD
-function preload() {
-  mySound = loadSound('assets/atentaOGG.ogg');
+// }
+////////////////////////////////SETUP
+function setup() {
 
-  // miFuente = loadFont('assets/Qanoar.otf');
-  miFuente = loadFont('assets/Qanoar.otf');
 
-  miDedo = loadImage('assets/dedo.png');
 
+  mySound = loadSound('assets/atentaOGG.ogg', cargueAsset);
+  miFuente = loadFont('assets/Qanoar.otf', cargueAsset);
+  miDedo = loadImage('assets/dedo.png', cargueAsset);
   for (let i = 0; i < 29; i++) {
-    misTexturasPinceles[i] = loadImage('assets/' + i + '.png');
+    misTexturasPinceles[i] = loadImage('assets/' + i + '.png', cargueAsset);
   }
 
 
-}
-////////////////////////////////SETUP
-function setup() {
+
+
+
+
+
+
+
   createCanvas(windowWidth, windowHeight);
   buffer1 = createGraphics(windowWidth, windowHeight, WEBGL);
   buffer2 = createGraphics(windowWidth, windowHeight, WEBGL);
@@ -58,82 +77,95 @@ function setup() {
 
 /*DRAW******************************************************************* */
 function draw() {
-  //dibujarLinea();
-  buffer1.push();
-  buffer1.noStroke(0);
-  buffer1.translate(0, 0, 0);
-  buffer1.texture(buffer2); // meto la textura de salida en la entrada
-  buffer1.plane(windowWidth, windowHeight); // dibujo la textura de salida en la entrada  
+  if (cantAssetsCargados >= cantAssetsTotal) {
 
-  //hago todo lo que quiero hacer
-  buffer1.translate(-windowWidth / 2, -windowHeight / 2); //CORRIJO TRANSLATE DE WEBGL
-
-  dibujarDedo();
-  buffer1.noStroke();
-  buffer1.blendMode(DIFFERENCE);
-  for (let i = 0; i < misPinceles.length; i++) {
-    //misPinceles[i].mover();
-    misPinceles[i].vivir();
-    misPinceles[i].moverNoise();
-    misPinceles[i].dibujar3d(i);
+    cargando = false;
   }
-
-  dibujarTexto3D();
-  //dibujarTexto();
-
-  buffer1.pop();
+  if (cargando == false) {
 
 
 
-  //meto lo que hice en la imagen de salida para reusarla despues
-  buffer2.push();
-  buffer2.noStroke();
+    //dibujarLinea();
+    buffer1.push();
+    buffer1.noStroke(0);
+    buffer1.translate(0, 0, 0);
+    buffer1.texture(buffer2); // meto la textura de salida en la entrada
+    buffer1.plane(windowWidth, windowHeight); // dibujo la textura de salida en la entrada  
 
-  let noiseTranslateX = map(noise(frameCount * 0.005 + 150), 0, 1, -5, 5);
-  let noiseTranslateY = map(noise(frameCount * 0.005), 0, 1, -5, 5);
-  let noiseScale = map(noise(frameCount * 0.005 + 750), 0, 1, 0.999, 1.01);
+    //hago todo lo que quiero hacer
+    buffer1.translate(-windowWidth / 2, -windowHeight / 2); //CORRIJO TRANSLATE DE WEBGL
 
-  push();
-  buffer2.translate(noiseTranslateX, noiseTranslateY); //hago transformaciones
-  buffer2.rotateZ(radians(rotationY / 25));
-  let miTraslacion = map(rotationZ, 0, 360, -2, 2);
-  buffer2.translate(miTraslacion, 0);;
-  pop();
+    dibujarDedo();
+    buffer1.noStroke();
+    buffer1.blendMode(DIFFERENCE);
+    for (let i = 0; i < misPinceles.length; i++) {
+      //misPinceles[i].mover();
+      misPinceles[i].vivir();
+      misPinceles[i].moverNoise();
+      misPinceles[i].dibujar3d(i);
+    }
 
+    dibujarTexto3D();
+    //dibujarTexto();
 
-  ////////////////////////
-
-
-
-
-
-
+    buffer1.pop();
 
 
 
+    //meto lo que hice en la imagen de salida para reusarla despues
+    buffer2.push();
+    buffer2.noStroke();
 
-  ///////////////////////////////////////
+    let noiseTranslateX = map(noise(frameCount * 0.005 + 150), 0, 1, -5, 5);
+    let noiseTranslateY = map(noise(frameCount * 0.005), 0, 1, -5, 5);
+    let noiseScale = map(noise(frameCount * 0.005 + 750), 0, 1, 0.999, 1.01);
 
-  buffer2.texture(buffer1); //meto la textura de salida
-  buffer2.scale(noiseScale); //hago transformaciones
-  if (mySound.currentTime() >= 131 && mySound.currentTime() <= 150) {
-    buffer2.scale(0.99); //hago transformaciones
+    push();
+    buffer2.translate(noiseTranslateX, noiseTranslateY); //hago transformaciones
+    buffer2.rotateZ(radians(rotationY / 25));
+    let miTraslacion = map(rotationZ, 0, 360, -2, 2);
+    buffer2.translate(miTraslacion, 0);;
+    pop();
+
+
+    ////////////////////////
+
+    buffer2.texture(buffer1); //meto la textura de salida
+    buffer2.scale(noiseScale); //hago transformaciones
+    if (mySound.currentTime() >= 131 && mySound.currentTime() <= 150) {
+      buffer2.scale(0.99); //hago transformaciones
+    }
+    if (mySound.currentTime() >= 131 && mySound.currentTime() <= 160) {
+      buffer2.rotate(radians(0.2));
+    }
+
+
+    buffer2.plane(windowWidth, windowHeight); //dibujo la textura de salida
+    buffer2.pop();
+
+    image(buffer2, 0, 0, windowWidth, windowHeight);
+
+    if (!focused) {
+      mySound.pause();
+    }
+
+    ///fin del principal
+  } else {
+    //aca hago todo lo que se va amostrar mientras cargo
+    background(0);
+    fill(255);
+    textSize(64);
+    textAlign(CENTER);
+
+    text(cantAssetsCargados, width / 2, height / 2);
+
+
   }
-  if (mySound.currentTime() >= 131 && mySound.currentTime() <= 160) {
-    buffer2.rotate(radians(0.2));
-  }
+}
 
 
-  buffer2.plane(windowWidth, windowHeight); //dibujo la textura de salida
-  buffer2.pop();
-
-  image(buffer2, 0, 0, windowWidth, windowHeight);
-
-  if (!focused) {
-    mySound.pause();
-  }
-
-
+function cargueAsset() {
+  cantAssetsCargados += 1;
 
 }
 ////////////////////////objeto pincel
@@ -241,7 +273,7 @@ function dibujarDedo() {
 
 
 function dibujarTexto3D() {
-  let miColorFront = color(230,200,90);
+  let miColorFront = color(230, 200, 90);
   let miColorBack = color(sin(frameCount * 0.015) * 200 + 55, sin(frameCount * 0.02) * 200 + 55, sin(frameCount * 0.011) * 200 + 55);
   let miEscala = ratioDeEscala * 100;
   let disTanciaSombra = 2.5;
