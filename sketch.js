@@ -17,27 +17,18 @@ let cargando = true;
 let cantAssetsTotal = 32;
 let cantAssetsCargados = 0;
 /////////////////////////////////////// PRELOAD
-// function preload() {
-//   mySound = loadSound('assets/atentaOGG.ogg', cargue);
-
-//   // miFuente = loadFont('assets/Qanoar.otf');
-//   miFuente = loadFont('assets/Qanoar.otf');
-
-//   miDedo = loadImage('assets/dedo.png');
-
-//   for (let i = 0; i < 29; i++) {
-//     misTexturasPinceles[i] = loadImage('assets/' + i + '.png');
-//   }
+ function preload() {
+  miFuente = loadFont('assets/qanoar.personal-use.otf', cargueAsset);
 
 
-// }
+ }
 ////////////////////////////////SETUP
 function setup() {
 
 
 
   mySound = loadSound('assets/atentaOGG.ogg', cargueAsset);
-  miFuente = loadFont('assets/qanoar.personal-use.otf', cargueAsset);
+  //miFuente = loadFont('assets/qanoar.personal-use.otf', cargueAsset);
   miDedo = loadImage('assets/dedo.png', cargueAsset);
   for (let i = 0; i < 29; i++) {
     misTexturasPinceles[i] = loadImage('assets/' + i + '.png', cargueAsset);
