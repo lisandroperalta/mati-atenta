@@ -98,11 +98,13 @@ function draw() {
       misPinceles[i].moverNoise();
       misPinceles[i].dibujar3d(i);
     }
-
+   
     dibujarTexto3D();
+    buffer1.pop();
+   
     //dibujarTexto();
 
-    buffer1.pop();
+   
 
 
 
@@ -291,22 +293,17 @@ function dibujarTexto3D() {
   let disTanciaSombra = 2.5;
   push();
   buffer1.stroke(255);
-  //  buffer1.strokeWeight(5000);
+ 
   buffer1.textSize(miEscala);
   buffer1.textAlign(CENTER);
 
   buffer1.textFont(miFuente);
-  translate(0, 0);
+ //translate(0, 0);
   buffer1.textLeading(ratioDeEscala * 250);
 
-  //buffer1.fill(sin(frameCount * 0.015) * 100, sin(frameCount * 0.02) * 100, sin(frameCount * 0.011) * 255);
-  //buffer1.text(mySound.currentTime(), 100 + 5, windowHeight - 100 + 5);
-
-  //buffer1.fill(sin(frameCount * 0.013) + 100 * 100, sin(frameCount * 0.03) + 25 * 100, sin(frameCount * 0.010) * 255);
-  // buffer1.text(mySound.currentTime(), 100, windowHeight - 100);
+ 
   buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
 
-  //buffer1.text(frameCount, windowWidth / 2, windowHeight / 2);
 
   pop();
 
