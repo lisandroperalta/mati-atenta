@@ -150,6 +150,8 @@ function draw() {
     fill(255);
     textSize(24);
     textAlign(CENTER);
+    textFont(miFuente);
+
     text("Cargando " + cantAssetsCargados + "/37...", width / 2, height / 2);
 
   }
