@@ -37,7 +37,7 @@ function setup() {
 
 
   mySound = loadSound('assets/atentaOGG.ogg', cargueAsset);
-  miFuente = loadFont('assets/Qanoar.ttf', cargueAsset);
+  miFuente = loadFont('assets/qanoar.personal-use.otf', cargueAsset);
   miDedo = loadImage('assets/dedo.png', cargueAsset);
   for (let i = 0; i < 29; i++) {
     misTexturasPinceles[i] = loadImage('assets/' + i + '.png', cargueAsset);
