@@ -53,7 +53,7 @@ function setup() {
   ratioDeEscala = constrain(windowWidth / 1920, 0.3, 1.2);
 
   tamanioFuente = windowWidth / 20;
-  button = createButton("play/pausa");
+  button = createButton("⏯");
   button.position(20, 20);
   button.mousePressed(reproducir);
   for (let i = 0; i < 29; i++) {

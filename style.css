@@ -9,7 +9,7 @@ body {
 
 @font-face {
   font-family: Qanoar;
-  src: url("assets/Qanoar.otf") format("opentype");
+  src: url("assets/Qanoar.ttf") format("opentype");
 }
 
 .loadingclass {
