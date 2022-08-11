@@ -10,6 +10,7 @@ let miDedo;
 let miFuente;
 let misPinceles = [];
 let misTexturasPinceles = [];
+let misTexturasGotitas = [];
 
 let ratioDeEscala = 1;
 let cargando = true;
@@ -36,12 +37,15 @@ function setup() {
 
 
   mySound = loadSound('assets/atentaOGG.ogg', cargueAsset);
-  miFuente = loadFont('assets/Qanoar.otf', cargueAsset);
+  miFuente = loadFont('assets/Qanoar.ttf', cargueAsset);
   miDedo = loadImage('assets/dedo.png', cargueAsset);
   for (let i = 0; i < 29; i++) {
     misTexturasPinceles[i] = loadImage('assets/' + i + '.png', cargueAsset);
   }
 
+  for (let i = 1; i < 6; i++) {
+    misTexturasGotitas[i] = loadImage('assets/gotita' + i + '.png', cargueAsset);
+  }
 
   createCanvas(windowWidth, windowHeight);
   buffer1 = createGraphics(windowWidth, windowHeight, WEBGL);
@@ -89,6 +93,12 @@ function draw() {
     buffer1.translate(-windowWidth / 2, -windowHeight / 2); //CORRIJO TRANSLATE DE WEBGL
 
     dibujarDedo();
+
+    if (mySound.currentTime() >= 17) {
+      dibujoGotita(); ////////////////////////////////////////////////////////////////////
+    }
+
+
     buffer1.noStroke();
     buffer1.blendMode(DIFFERENCE);
     for (let i = 0; i < misPinceles.length; i++) {
@@ -149,9 +159,11 @@ function draw() {
     fill(255);
     textSize(24);
     textAlign(CENTER);
-    text("Cargando " + cantAssetsCargados + "/32...", width / 2, height / 2);
+    text("Cargando " + cantAssetsCargados + "/37...", width / 2, height / 2);
 
   }
+
+  ////fin del draw
 }
 
 
@@ -159,8 +171,24 @@ function cargueAsset() {
   cantAssetsCargados += 1;
 
 }
-////////////////////////objeto pincel
 
+// dibujogotita
+
+function dibujoGotita() {
+  if (random() < 0.25) {
+    buffer1.tint(random(150, 255), random(150, 255), random(150, 255));
+
+    let pincel = int(random(1, 6));
+    buffer1.push();
+
+    buffer1.translate(random(windowWidth), random(windowHeight));
+    buffer1.texture(misTexturasGotitas[pincel]);
+    buffer1.plane(misTexturasGotitas[pincel].width * ratioDeEscala, misTexturasGotitas[pincel].height * ratioDeEscala, 150, 150);
+    buffer1.pop();
+  }
+}
+
+////////////////////////objeto pincel
 
 class Pincel {
 
