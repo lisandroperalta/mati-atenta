@@ -24,12 +24,13 @@ let empezo = false;
 
 /////////////////////////////////////// PRELOAD
 function preload() {
-  miFuente = loadFont('./assets/arial.ttf', cargueAsset);
+  miFuente = loadFont('./assets/qanoar.personal-use.otf', cargueAsset);
 
 
 }
 ////////////////////////////////SETUP
 function setup() {
+  pixelDensity(1);
 
 
 
@@ -63,12 +64,12 @@ function setup() {
   background(0);
   frameRate(24);
   smooth();
-  setAttributes('stencil', true);
-  push();
-  imageMode(CENTER);
-  buffer1.tint(255, 255, 255, 255);
-  buffer1.image(miDedo, -windowWidth / 2, -windowHeight / 2, windowWidth, windowHeight);
-  pop();
+  //setAttributes('stencil', true);
+  //push();
+  //imageMode(CENTER);
+  //buffer1.tint(255, 255, 255, 255);
+  //buffer1.image(miDedo, -windowWidth / 2, -windowHeight / 2, windowWidth, windowHeight);
+  //pop();
 }
 
 
@@ -79,17 +80,12 @@ function draw() {
     cargando = false;
   }
   if (cargando == false) {
-
-
-
-    //dibujarLinea();
     buffer1.push();
     buffer1.noStroke(0);
     buffer1.translate(0, 0, 0);
     buffer1.texture(buffer2); // meto la textura de salida en la entrada
     buffer1.plane(windowWidth, windowHeight); // dibujo la textura de salida en la entrada  
 
-    //hago todo lo que quiero hacer
     buffer1.translate(-windowWidth / 2, -windowHeight / 2); //CORRIJO TRANSLATE DE WEBGL
 
     dibujarDedo();
@@ -106,7 +102,7 @@ function draw() {
       misPinceles[i].dibujar3d(i);
     }
 
-    dibujarTexto3D();
+    dibujarTexto3D();///////////// HERE I DRAW THE TEXT
     buffer1.pop();
 
 
