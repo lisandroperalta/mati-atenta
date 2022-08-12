@@ -17,11 +17,11 @@ let cargando = true;
 let cantAssetsTotal = 32;
 let cantAssetsCargados = 0;
 /////////////////////////////////////// PRELOAD
- function preload() {
-  miFuente = loadFont('assets/qanoar.personal-use.otf', cargueAsset);
+function preload() {
+  miFuente = loadFont('/assets/qanoar.personal-use.otf', cargueAsset);
 
 
- }
+}
 ////////////////////////////////SETUP
 function setup() {
 
@@ -91,20 +91,20 @@ function draw() {
 
 
     buffer1.noStroke();
-    buffer1.blendMode(DIFFERENCE);
+    // buffer1.blendMode(DIFFERENCE);
     for (let i = 0; i < misPinceles.length; i++) {
       //misPinceles[i].mover();
       misPinceles[i].vivir();
       misPinceles[i].moverNoise();
       misPinceles[i].dibujar3d(i);
     }
-   
+
     dibujarTexto3D();
     buffer1.pop();
-   
+
     //dibujarTexto();
 
-   
+
 
 
 
@@ -152,7 +152,7 @@ function draw() {
     fill(255);
     textSize(24);
     textAlign(CENTER);
-    textFont(miFuente);
+    // textFont(miFuente);
 
     text("Cargando " + cantAssetsCargados + "/37...", width / 2, height / 2);
 
@@ -294,27 +294,26 @@ function dibujarTexto3D() {
   let disTanciaSombra = 2.5;
   push();
   buffer1.stroke(255);
- 
+
   buffer1.textSize(miEscala);
   buffer1.textAlign(CENTER);
 
   buffer1.textFont(miFuente);
- //translate(0, 0);
   buffer1.textLeading(ratioDeEscala * 250);
 
- 
-  buffer1.fill(sin(frameCount * 0.015) * 255, sin(frameCount * 0.02) * 255, sin(frameCount * 0.011) * 255);
+
+
 
 
   pop();
 
   if (mySound.currentTime() >= 0.01 && mySound.currentTime() <= 4) {
     push();
-   buffer1.translate(windowWidth/2, windowHeight / 2)
+    buffer1.translate(windowWidth / 2, windowHeight / 2)
     buffer1.fill(255);
-    buffer1.rectMode(CENTER);
-   buffer1.rect(0,0,100000,5);
-   buffer1.rect(0,0,5,100000);
+    // buffer1.rectMode(CENTER);
+    // buffer1.rect(0, 0, 100000, 5);
+    // buffer1.rect(0, 0, 5, 100000);
     buffer1.textSize(miEscala);
     textStyle(BOLD);
     // buffer1.fill(miColorBack);
@@ -322,14 +321,16 @@ function dibujarTexto3D() {
     // buffer1.fill(miColorFront);
     // textStyle(NORMAL);
     // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2, -100);
-    
+    //buffer1.textFont(miFuente);
+    buffer1.textLeading(ratioDeEscala * 250);
+
     buffer1.fill(miColorBack);
-     buffer1.text("Nuevo ciclo \ny vos estas \natenta", 0+ disTanciaSombra, -100 + disTanciaSombra);
-     buffer1.fill(miColorFront);
-     textStyle(NORMAL);
-     buffer1.text("Nuevo ciclo \ny vos estas \natenta", 0, -100);
-    
-    
+    buffer1.text("Nuevo ciclo \ny vos estas \natenta", 0 + disTanciaSombra, -100 + disTanciaSombra);
+    buffer1.fill(miColorFront);
+    textStyle(NORMAL);
+    buffer1.text("Nuevo ciclo \ny vos estas \natenta", 0, -100);
+
+
     pop();
   }
 
