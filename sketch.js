@@ -16,9 +16,13 @@ let ratioDeEscala = 1;
 let cargando = true;
 let cantAssetsTotal = 32;
 let cantAssetsCargados = 0;
+
+
+
+let empezo = false;
 /////////////////////////////////////// PRELOAD
 function preload() {
-  miFuente = loadFont('/assets/qanoar.personal-use.otf', cargueAsset);
+  miFuente = loadFont('./assets/qanoar.personal-use.otf', cargueAsset);
 
 
 }
@@ -30,6 +34,9 @@ function setup() {
   mySound = loadSound('assets/atentaOGG.ogg', cargueAsset);
   //miFuente = loadFont('assets/qanoar.personal-use.otf', cargueAsset);
   miDedo = loadImage('assets/dedo.png', cargueAsset);
+  miPlay = loadImage('assets/play.png', cargueAsset);
+
+
   for (let i = 0; i < 29; i++) {
     misTexturasPinceles[i] = loadImage('assets/' + i + '.png', cargueAsset);
   }
@@ -91,9 +98,7 @@ function draw() {
 
 
     buffer1.noStroke();
-    // buffer1.blendMode(DIFFERENCE);
     for (let i = 0; i < misPinceles.length; i++) {
-      //misPinceles[i].mover();
       misPinceles[i].vivir();
       misPinceles[i].moverNoise();
       misPinceles[i].dibujar3d(i);
@@ -102,7 +107,18 @@ function draw() {
     dibujarTexto3D();
     buffer1.pop();
 
-    //dibujarTexto();
+
+    if (empezo == false) {
+
+      push();
+      imageMode(CENTER);
+      buffer1.tint(255, 150);
+      let escalaPlay = ratioDeEscala * 250;
+      buffer1.image(miPlay, 0 - escalaPlay / 2, 0 - escalaPlay / 2, escalaPlay, escalaPlay);
+      pop();
+
+
+    }
 
 
 
@@ -167,6 +183,27 @@ function cargueAsset() {
 
 }
 
+
+function mouseClicked() {
+  if (empezo == false) {
+    let escalaPlay = ratioDeEscala * 250;
+    print('   mouseX: ' + mouseX + '   mouseY: ' + mouseY)
+    print(dist(windowWidth / 2, windowHeight / 2, mouseX, mouseY));
+    print('escala play: ' + escalaPlay);
+    if (dist(windowWidth / 2, windowHeight / 2, mouseX, mouseY) < escalaPlay) {
+
+
+      reproducir();
+      empezo = true;
+    }
+
+  }
+}
+
+
+
+
+
 // dibujogotita
 
 function dibujoGotita() {
@@ -211,25 +248,15 @@ class Pincel {
 
   vivir() {
     this.vidaActual += 1;
-
     if (this.vidaActual <= this.esperanzaDeVida) {
-
       this.tintVida++;
-
     }
-
     if (this.vidaActual >= this.esperanzaDeVida) {
-
       this.tintVida--;
-
     }
     if (this.tintVida <= 0) {
-
       this.reiniciarPincel()
-
     }
-
-
   }
 
 
