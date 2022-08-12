@@ -24,7 +24,7 @@ let empezo = false;
 
 /////////////////////////////////////// PRELOAD
 function preload() {
-  miFuente = loadFont('./assets/qanoar.personal-use.otf', cargueAsset);
+  miFuente = loadFont('./assets/arial.ttf', cargueAsset);
 
 
 }
