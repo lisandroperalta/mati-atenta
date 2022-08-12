@@ -20,6 +20,8 @@ let cantAssetsCargados = 0;
 
 
 let empezo = false;
+
+
 /////////////////////////////////////// PRELOAD
 function preload() {
   miFuente = loadFont('./assets/qanoar.personal-use.otf', cargueAsset);
