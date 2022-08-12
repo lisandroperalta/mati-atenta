@@ -247,6 +247,7 @@ class Pincel {
     buffer1.push();
     buffer1.translate(this.x, this.y);
     buffer1.tint(255, this.tintVida);
+
     buffer1.texture(misTexturasPinceles[i]);
     buffer1.plane(misTexturasPinceles[i].width * ratioDeEscala, misTexturasPinceles[i].height * ratioDeEscala, 150, 150);
     if (this.x < 0 || this.x > windowWidth) {
@@ -309,14 +310,26 @@ function dibujarTexto3D() {
 
   if (mySound.currentTime() >= 0.01 && mySound.currentTime() <= 4) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
+   buffer1.translate(windowWidth/2, windowHeight / 2)
+    buffer1.fill(255);
+    buffer1.rectMode(CENTER);
+   buffer1.rect(0,0,100000,5);
+   buffer1.rect(0,0,5,100000);
     buffer1.textSize(miEscala);
     textStyle(BOLD);
+    // buffer1.fill(miColorBack);
+    // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
+    // buffer1.fill(miColorFront);
+    // textStyle(NORMAL);
+    // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2, -100);
+    
     buffer1.fill(miColorBack);
-    buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    textStyle(NORMAL);
-    buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2, -100);
+     buffer1.text("Nuevo ciclo \ny vos estas \natenta", 0+ disTanciaSombra, -100 + disTanciaSombra);
+     buffer1.fill(miColorFront);
+     textStyle(NORMAL);
+     buffer1.text("Nuevo ciclo \ny vos estas \natenta", 0, -100);
+    
+    
     pop();
   }
 
