@@ -340,7 +340,7 @@ function dibujarTexto3D() {
     // buffer1.rect(0, 0, 100000, 5);
     // buffer1.rect(0, 0, 5, 100000);
     buffer1.textSize(miEscala);
-    textStyle(BOLD);
+  // textStyle(BOLD);
     // buffer1.fill(miColorBack);
     // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     // buffer1.fill(miColorFront);
@@ -352,7 +352,7 @@ function dibujarTexto3D() {
     buffer1.fill(miColorBack);
     buffer1.text("Nuevo ciclo \ny vos estas \natenta", 0 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
     buffer1.text("Nuevo ciclo \ny vos estas \natenta", 0, -100);
 
 
@@ -365,10 +365,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("todo pasa en \ncualquier momento", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("todo pasa en \ncualquier momento", -windowWidth / 2, -100);
     pop();
@@ -380,10 +380,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("No quiero que \ncedamos el control", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("No quiero que \ncedamos el control", -windowWidth / 2, -100);
     pop();
@@ -394,10 +394,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("Si a cada paso \ndimos lo mejor", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("Si a cada paso \ndimos lo mejor", -windowWidth / 2, -100);
     pop();
@@ -408,10 +408,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("Vos tan zen \nestado de meditacion", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("Vos tan zen \nestado de meditacion", -windowWidth / 2, -100);
     pop();
@@ -422,10 +422,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("Yo en silencio \nescuchando tu voz", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("Yo en silencio \nescuchando tu voz", -windowWidth / 2, -100);
     pop();
@@ -436,10 +436,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("Yo en silencio \nescuchando tu voz", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("Yo en silencio \nescuchando tu voz", -windowWidth / 2, -100);
     pop();
@@ -451,10 +451,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("Bienvenidas \nlas murallas", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("Bienvenidas \nlas murallas", -windowWidth / 2, -100);
     pop();
@@ -465,10 +465,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("que vamos \na derribar", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("que vamos \na derribar", -windowWidth / 2, -100);
     pop();
@@ -479,10 +479,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("la gran flecha \nya avanza", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("la gran flecha \nya avanza", -windowWidth / 2, -100);
     pop();
@@ -494,10 +494,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("cruzando el \nhumedal", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("cruzando el \nhumedal", -windowWidth / 2, -100);
     pop();
@@ -508,10 +508,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("son tus ojos \nlos que marchan", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("son tus ojos \nlos que marchan", -windowWidth / 2, -100);
     pop();
@@ -522,10 +522,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("que se alejan \ndel lugar", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("que se alejan \ndel lugar", -windowWidth / 2, -100);
     pop();
@@ -536,10 +536,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("yo lamiendote \nlas llagas", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("yo lamiendote \nlas llagas", -windowWidth / 2, -100);
     pop();
@@ -550,10 +550,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("vos volviendote \na quemar", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("vos volviendote \na quemar", -windowWidth / 2, -100);
     pop();
@@ -564,10 +564,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("si sabés que \nya no dás más", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("si sabés que \nya no dás más", -windowWidth / 2, -100);
     pop();
@@ -578,10 +578,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("¿Por qué no \nlo vas a intentar?", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("¿Por qué no \nlo vas a intentar?", -windowWidth / 2, -100);
     pop();
@@ -592,10 +592,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("por lo menos hoy", -windowWidth / 2 + disTanciaSombra, -100 + 5);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("por lo menos hoy", -windowWidth / 2, -100);
     pop();
@@ -608,10 +608,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("un poco de amor", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("un poco de amor", -windowWidth / 2, -100);
     pop();
@@ -623,10 +623,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("por lo mismo", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("por lo mismo", -windowWidth / 2, -100);
     pop();
@@ -637,10 +637,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("a los mismos", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("a los mismos", -windowWidth / 2, -100);
     pop();
@@ -651,10 +651,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("por lo mismo", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("por lo mismo", -windowWidth / 2, -100);
     pop();
@@ -665,10 +665,10 @@ function dibujarTexto3D() {
     buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
     buffer1.fill(miColorBack);
-    textStyle(BOLD);
+    // textStyle(BOLD);
     buffer1.text("a los mismos", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
-    textStyle(NORMAL);
+    // textStyle(NORMAL);
 
     buffer1.text("a los mismos", -windowWidth / 2, -100);
     pop();
