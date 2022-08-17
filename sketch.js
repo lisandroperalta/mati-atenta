@@ -718,7 +718,7 @@ function reproducir() {
     //mySound.jump(127); //////////////////ATENTO A ESTO
   }
 
-
+//
   background(0);
 
 }
