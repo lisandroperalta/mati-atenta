@@ -24,7 +24,7 @@ let empezo = false;
 
 /////////////////////////////////////// PRELOAD
 function preload() {
-  miFuente = loadFont('./assets/qanoar.personal-use.otf', cargueAsset);
+  //miFuente = loadFont('./assets/qanoar.personal-use.otf', cargueAsset);
 
 
 }
@@ -35,7 +35,7 @@ function setup() {
 
 
   mySound = loadSound('assets/atentaOGG.ogg', cargueAsset);
-  //miFuente = loadFont('assets/qanoar.personal-use.otf', cargueAsset);
+  miFuente = loadFont('assets/qanoar.personal-use.otf', cargueAsset);
   miDedo = loadImage('assets/dedo.png', cargueAsset);
   miPlay = loadImage('assets/play.png', cargueAsset);
 
