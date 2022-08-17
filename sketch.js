@@ -63,13 +63,13 @@ function setup() {
   }
   background(0);
   frameRate(24);
-  smooth();
-  //setAttributes('stencil', true);
-  //push();
-  //imageMode(CENTER);
-  //buffer1.tint(255, 255, 255, 255);
-  //buffer1.image(miDedo, -windowWidth / 2, -windowHeight / 2, windowWidth, windowHeight);
-  //pop();
+//  smooth();
+  setAttributes('stencil', true);
+  push();
+  imageMode(CENTER);
+  buffer1.tint(255, 255, 255, 255);
+  buffer1.image(miDedo, -windowWidth / 2, -windowHeight / 2, windowWidth, windowHeight);
+  pop();
 }
 
 
