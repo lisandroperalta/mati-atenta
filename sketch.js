@@ -30,7 +30,7 @@ function preload() {
 }
 ////////////////////////////////SETUP
 function setup() {
-  pixelDensity(1);
+ // pixelDensity(1);
 
 
 
@@ -319,22 +319,50 @@ function dibujarTexto3D() {
   let disTanciaSombra = 2.5;
   push();
   buffer1.stroke(255);
-
   buffer1.textSize(miEscala);
   buffer1.textAlign(CENTER);
-
   buffer1.textFont(miFuente);
-  buffer1.textLeading(ratioDeEscala * 250);
+  //buffer1.textLeading(ratioDeEscala * 250);
+pop();
+
+  
+  push();
+    buffer1.fill(255);
+    // buffer1.rectMode(CENTER);
+    // buffer1.rect(0, 0, 100000, 5);
+    // buffer1.rect(0, 0, 5, 100000);
+   //buffer1.textSize(miEscala);
+     buffer1.textSize(10);
+
+  // textStyle(BOLD);
+    // buffer1.fill(miColorBack);
+    // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
+    // buffer1.fill(miColorFront);
+    // textStyle(NORMAL);
+    // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2, -100);
+    //buffer1.textFont(miFuente);
+ // buffer1.ellipse(windowWidth/2, windowHeight/2,200,200);
+  //buffer1.textLeading(ratioDeEscala * 250);
+    buffer1.fill(255,255,0);
+
+buffer1.ellipse(windowWidth/2, windowHeight/2, 150,150);
+
+    buffer1.fill(miColorBack);
+    buffer1.text("PROBANDO", windowWidth/2, windowHeight/2);
 
 
-
-
-
-  pop();
-
+    pop();
+  
+  
+  
+  
+  
+  
+  
+  
   if (mySound.currentTime() >= 0.01 && mySound.currentTime() <= 4) {
     push();
-    buffer1.translate(windowWidth / 2, windowHeight / 2)
+   // buffer1.translate(windowWidth / 2, windowHeight / 4)
     buffer1.fill(255);
     // buffer1.rectMode(CENTER);
     // buffer1.rect(0, 0, 100000, 5);
@@ -347,13 +375,13 @@ function dibujarTexto3D() {
     // textStyle(NORMAL);
     // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2, -100);
     //buffer1.textFont(miFuente);
-    buffer1.textLeading(ratioDeEscala * 250);
-
+    //buffer1.textLeading(ratioDeEscala * 250);
+//buffer1.ellipse(0,0,200,100);
     buffer1.fill(miColorBack);
-    buffer1.text("Nuevo ciclo \ny vos estas \natenta", 0 + disTanciaSombra, -100 + disTanciaSombra);
+   buffer1.text("Nuevo ciclo \ny vos estas \natenta",  0  + disTanciaSombra,  0-100 + disTanciaSombra);
     buffer1.fill(miColorFront);
     // textStyle(NORMAL);
-    buffer1.text("Nuevo ciclo \ny vos estas \natenta", 0, -100);
+    //buffer1.text("Nuevo ciclo \ny vos estas \natenta", windowWidth/2, windodHeight/2-100);
 
 
     pop();
