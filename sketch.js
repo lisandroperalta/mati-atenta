@@ -682,6 +682,7 @@ function dibujarTexto3D() {
 
 /////////// extras
 function reproducir() {
+  print('reproucir');
   if (mySound.isPlaying()) {
     mySound.pause();
   } else {
