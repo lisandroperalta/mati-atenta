@@ -24,18 +24,18 @@ let empezo = false;
 
 /////////////////////////////////////// PRELOAD
 function preload() {
-  //miFuente = loadFont('./assets/qanoar.personal-use.otf', cargueAsset);
+  miFuente = loadFont('./assets/qanoar.personal-use.otf', cargueAsset);
 
 
 }
 ////////////////////////////////SETUP
 function setup() {
- // pixelDensity(1);
+  // pixelDensity(1);
 
 
 
   mySound = loadSound('assets/atentaOGG.ogg', cargueAsset);
-  miFuente = loadFont('assets/qanoar.personal-use.otf', cargueAsset);
+  // miFuente = loadFont('assets/qanoar.personal-use.otf', cargueAsset);
   miDedo = loadImage('assets/dedo.png', cargueAsset);
   miPlay = loadImage('assets/play.png', cargueAsset);
 
@@ -63,7 +63,7 @@ function setup() {
   }
   background(0);
   frameRate(24);
-//  smooth();
+  //  smooth();
   setAttributes('stencil', true);
   push();
   imageMode(CENTER);
@@ -102,7 +102,8 @@ function draw() {
       misPinceles[i].dibujar3d(i);
     }
 
-    dibujarTexto3D();///////////// HERE I DRAW THE TEXT
+    dibujarTexto3D(); ///////////// HERE I DRAW THE TEXT
+    dibujarTextoPrueba();
     buffer1.pop();
 
 
@@ -166,7 +167,7 @@ function draw() {
     fill(255);
     textSize(24);
     textAlign(CENTER);
-    // textFont(miFuente);
+    textFont(miFuente);
 
     text("Cargando " + cantAssetsCargados + "/37...", width / 2, height / 2);
 
@@ -310,7 +311,18 @@ function dibujarDedo() {
 
 
 /////////////////////////  dibujar texto
+function dibujarTextoPrueba() {
+  buffer1.push();
+  buffer1.textFont(miFuente);
 
+  buffer1.textSize(100);
+  buffer1.fill(255,100,0);
+
+  buffer1.ellipse(windowWidth/2, windowHeight/2,200,200);
+  buffer1.fill(255,0,255);
+  buffer1.text("PROBANDO", windowWidth / 2, windowHeight / 2);
+  buffer1.pop();
+}
 
 function dibujarTexto3D() {
   let miColorFront = color(230, 200, 90);
@@ -319,56 +331,57 @@ function dibujarTexto3D() {
   let disTanciaSombra = 2.5;
   push();
   buffer1.stroke(255);
+ // buffer1.ellipse(windowWidth / 2, windowHeight / 2, 150, 150);
   buffer1.textSize(miEscala);
   buffer1.textAlign(CENTER);
   buffer1.textFont(miFuente);
   //buffer1.textLeading(ratioDeEscala * 250);
-pop();
+  pop();
 
-  
+
   push();
-    buffer1.fill(255);
-    // buffer1.rectMode(CENTER);
-    // buffer1.rect(0, 0, 100000, 5);
-    // buffer1.rect(0, 0, 5, 100000);
-   //buffer1.textSize(miEscala);
-     buffer1.textSize(10);
+  buffer1.fill(255);
+  // buffer1.rectMode(CENTER);
+  // buffer1.rect(0, 0, 100000, 5);
+  // buffer1.rect(0, 0, 5, 100000);
+  buffer1.textSize(miEscala);
+  //buffer1.textSize(10);
 
   // textStyle(BOLD);
-    // buffer1.fill(miColorBack);
-    // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    // buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-    // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2, -100);
-    //buffer1.textFont(miFuente);
- // buffer1.ellipse(windowWidth/2, windowHeight/2,200,200);
+  // buffer1.fill(miColorBack);
+  // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
+  // buffer1.fill(miColorFront);
+  // textStyle(NORMAL);
+  // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2, -100);
+  //buffer1.textFont(miFuente);
+  // buffer1.ellipse(windowWidth/2, windowHeight/2,200,200);
   //buffer1.textLeading(ratioDeEscala * 250);
-    buffer1.fill(255,255,0);
+  buffer1.fill(255, 255, 0);
 
-buffer1.ellipse(windowWidth/2, windowHeight/2, 150,150);
+ // buffer1.ellipse(windowWidth / 2, windowHeight / 2, 150, 150);
 
-    buffer1.fill(miColorBack);
-    buffer1.text("PROBANDO", windowWidth/2, windowHeight/2);
+  buffer1.fill(miColorBack);
+  //buffer1.text("PROBANDO", windowWidth / 2, windowHeight / 2);
 
 
-    pop();
-  
-  
-  
-  
-  
-  
-  
-  
+  pop();
+
+
+
+
+
+
+
+
   if (mySound.currentTime() >= 0.01 && mySound.currentTime() <= 4) {
     push();
-   // buffer1.translate(windowWidth / 2, windowHeight / 4)
+    // buffer1.translate(windowWidth / 2, windowHeight / 4)
     buffer1.fill(255);
     // buffer1.rectMode(CENTER);
     // buffer1.rect(0, 0, 100000, 5);
     // buffer1.rect(0, 0, 5, 100000);
     buffer1.textSize(miEscala);
-  // textStyle(BOLD);
+    // textStyle(BOLD);
     // buffer1.fill(miColorBack);
     // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     // buffer1.fill(miColorFront);
@@ -376,9 +389,9 @@ buffer1.ellipse(windowWidth/2, windowHeight/2, 150,150);
     // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2, -100);
     //buffer1.textFont(miFuente);
     //buffer1.textLeading(ratioDeEscala * 250);
-//buffer1.ellipse(0,0,200,100);
+    //buffer1.ellipse(0,0,200,100);
     buffer1.fill(miColorBack);
-   buffer1.text("Nuevo ciclo \ny vos estas \natenta",  0  + disTanciaSombra,  0-100 + disTanciaSombra);
+    buffer1.text("Nuevo ciclo \ny vos estas \natenta", 0 + disTanciaSombra, 0 - 100 + disTanciaSombra);
     buffer1.fill(miColorFront);
     // textStyle(NORMAL);
     //buffer1.text("Nuevo ciclo \ny vos estas \natenta", windowWidth/2, windodHeight/2-100);
@@ -718,7 +731,7 @@ function reproducir() {
     //mySound.jump(127); //////////////////ATENTO A ESTO
   }
 
-//
+  //
   background(0);
 
 }
