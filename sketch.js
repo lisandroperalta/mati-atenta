@@ -103,8 +103,8 @@ function draw() {
     }
 
     dibujarTexto3D(); ///////////// HERE I DRAW THE TEXT
-    dibujarTextoPrueba();
     buffer1.pop();
+    dibujarTextoPrueba();
 
 
     if (empezo == false) {
@@ -316,11 +316,12 @@ function dibujarTextoPrueba() {
   buffer1.textFont(miFuente);
 
   buffer1.textSize(100);
-  buffer1.fill(255,100,0);
+  buffer1.fill(255,0,0);
 
-  buffer1.ellipse(windowWidth/2, windowHeight/2,200,200);
-  buffer1.fill(255,0,255);
-  buffer1.text("PROBANDO", windowWidth / 2, windowHeight / 2);
+  buffer1.ellipse(0, 0,200,200);
+  buffer1.fill(255,255,255);
+  buffer1.textAlign(CENTER);
+  buffer1.text("PROBANDO", 0, 0);
   buffer1.pop();
 }
 
