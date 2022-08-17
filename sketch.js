@@ -51,6 +51,9 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   buffer1 = createGraphics(windowWidth, windowHeight, WEBGL);
   buffer2 = createGraphics(windowWidth, windowHeight, WEBGL);
+ buffer1.setAttributes('alpha', true);
+  buffer2.setAttributes('alpha', true);
+
   ratioDeEscala = constrain(windowWidth / 1920, 0.3, 1.2);
 
   tamanioFuente = windowWidth / 20;
@@ -64,7 +67,7 @@ function setup() {
   background(0);
   frameRate(24);
   //  smooth();
-  setAttributes('stencil', true);
+
   push();
   imageMode(CENTER);
   buffer1.tint(255, 255, 255, 255);
