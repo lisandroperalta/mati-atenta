@@ -51,7 +51,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   buffer1 = createGraphics(windowWidth, windowHeight, WEBGL);
   buffer2 = createGraphics(windowWidth, windowHeight, WEBGL);
- buffer1.setAttributes('alpha', true);
+  buffer1.setAttributes('alpha', true);
   buffer2.setAttributes('alpha', true);
 
   ratioDeEscala = constrain(windowWidth / 1920, 0.3, 1.2);
@@ -107,7 +107,7 @@ function draw() {
 
     dibujarTexto3D(); ///////////// HERE I DRAW THE TEXT
     buffer1.pop();
-    dibujarTextoPrueba();
+    //dibujarTextoPrueba();
 
 
     if (empezo == false) {
@@ -319,12 +319,12 @@ function dibujarTextoPrueba() {
   buffer1.textFont(miFuente);
 
   buffer1.textSize(100);
-  buffer1.fill(255,0,0);
+  buffer1.fill(255, 0, 0);
 
-  buffer1.ellipse(0, 0,200,200);
-  buffer1.fill(255,255,255);
+  buffer1.ellipse(0, 0, 200, 200);
+  buffer1.fill(255, 255, 255);
   buffer1.textAlign(CENTER);
-  buffer1.text("PROBANDO", 0, 0);
+  buffer1.text("PROBANDO \notro", 0, 0);
   buffer1.pop();
 }
 
@@ -335,7 +335,7 @@ function dibujarTexto3D() {
   let disTanciaSombra = 2.5;
   push();
   buffer1.stroke(255);
- // buffer1.ellipse(windowWidth / 2, windowHeight / 2, 150, 150);
+  // buffer1.ellipse(windowWidth / 2, windowHeight / 2, 150, 150);
   buffer1.textSize(miEscala);
   buffer1.textAlign(CENTER);
   buffer1.textFont(miFuente);
@@ -362,7 +362,7 @@ function dibujarTexto3D() {
   //buffer1.textLeading(ratioDeEscala * 250);
   buffer1.fill(255, 255, 0);
 
- // buffer1.ellipse(windowWidth / 2, windowHeight / 2, 150, 150);
+  // buffer1.ellipse(windowWidth / 2, windowHeight / 2, 150, 150);
 
   buffer1.fill(miColorBack);
   //buffer1.text("PROBANDO", windowWidth / 2, windowHeight / 2);
@@ -379,29 +379,17 @@ function dibujarTexto3D() {
 
   if (mySound.currentTime() >= 0.01 && mySound.currentTime() <= 4) {
     push();
-    // buffer1.translate(windowWidth / 2, windowHeight / 4)
-    buffer1.fill(255);
-    // buffer1.rectMode(CENTER);
-    // buffer1.rect(0, 0, 100000, 5);
-    // buffer1.rect(0, 0, 5, 100000);
+    buffer1.translate(windowWidth, windowHeight / 2)
     buffer1.textSize(miEscala);
-    // textStyle(BOLD);
-    // buffer1.fill(miColorBack);
-    // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    // buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-    // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2, -100);
-    //buffer1.textFont(miFuente);
-    //buffer1.textLeading(ratioDeEscala * 250);
-    //buffer1.ellipse(0,0,200,100);
     buffer1.fill(miColorBack);
-    buffer1.text("Nuevo ciclo \ny vos estas \natenta", 0 + disTanciaSombra, 0 - 100 + disTanciaSombra);
+    // textStyle(BOLD);
+    buffer1.text("Nuevo ciclo y \nvos estás atenta", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
     buffer1.fill(miColorFront);
     // textStyle(NORMAL);
-    //buffer1.text("Nuevo ciclo \ny vos estas \natenta", windowWidth/2, windodHeight/2-100);
 
-
+    buffer1.text("Nuevo ciclo y \nvos estás atenta", -windowWidth / 2, -100);
     pop();
+
   }
 
 
