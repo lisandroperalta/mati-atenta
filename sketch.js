@@ -1,4 +1,4 @@
-let buffer1, buffer2;
+let buffer1, buffer2, buffer2D;
 
 let mySound;
 let tamanioFuente;
@@ -51,6 +51,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   buffer1 = createGraphics(windowWidth, windowHeight, WEBGL);
   buffer2 = createGraphics(windowWidth, windowHeight, WEBGL);
+  buffer2D = createGraphics(windowWidth, windowHeight);
+
   buffer1.setAttributes('alpha', true);
   buffer2.setAttributes('alpha', true);
 
@@ -66,7 +68,7 @@ function setup() {
   }
   background(0);
   frameRate(24);
-  //  smooth();
+   smooth();
 
   push();
   imageMode(CENTER);
@@ -88,9 +90,7 @@ function draw() {
     buffer1.translate(0, 0, 0);
     buffer1.texture(buffer2); // meto la textura de salida en la entrada
     buffer1.plane(windowWidth, windowHeight); // dibujo la textura de salida en la entrada  
-
     buffer1.translate(-windowWidth / 2, -windowHeight / 2); //CORRIJO TRANSLATE DE WEBGL
-
     dibujarDedo();
 
     if (mySound.currentTime() >= 17) {
@@ -105,10 +105,15 @@ function draw() {
       misPinceles[i].dibujar3d(i);
     }
 
+    buffer2D.fill(255,255,255,255);
     dibujarTexto3D(); ///////////// HERE I DRAW THE TEXT
-    buffer1.pop();
-    //dibujarTextoPrueba();
 
+    buffer1.texture(buffer2D); // meto la textura de salida en la entrada
+    buffer1.noStroke();
+    buffer1.translate(windowWidth / 2, windowHeight / 2); //CORRIJO TRANSLATE DE WEBGL
+    buffer1.plane(windowWidth, windowHeight, 100, 100); // dibujo la textura de salida en la entrada  
+    buffer1.pop();
+    
 
     if (empezo == false) {
 
@@ -121,10 +126,6 @@ function draw() {
 
 
     }
-
-
-
-
 
     //meto lo que hice en la imagen de salida para reusarla despues
     buffer2.push();
@@ -172,7 +173,7 @@ function draw() {
     textAlign(CENTER);
     textFont(miFuente);
 
-    text("Cargando " + cantAssetsCargados + "/37...", width / 2, height / 2);
+    text("Cargando " + cantAssetsCargados, width / 2, height / 2);
 
   }
 
@@ -209,17 +210,19 @@ function mouseClicked() {
 // dibujogotita
 
 function dibujoGotita() {
+  buffer1.push();
   if (random() < 0.25) {
     buffer1.tint(random(150, 255), random(150, 255), random(150, 255));
 
     let pincel = int(random(1, 6));
-    buffer1.push();
+
 
     buffer1.translate(random(windowWidth), random(windowHeight));
     buffer1.texture(misTexturasGotitas[pincel]);
     buffer1.plane(misTexturasGotitas[pincel].width * ratioDeEscala, misTexturasGotitas[pincel].height * ratioDeEscala, 150, 150);
-    buffer1.pop();
   }
+  buffer1.pop();
+
 }
 
 ////////////////////////objeto pincel
@@ -313,81 +316,30 @@ function dibujarDedo() {
 
 
 
-/////////////////////////  dibujar texto
-function dibujarTextoPrueba() {
-  buffer1.push();
-  buffer1.textFont(miFuente);
 
-  buffer1.textSize(100);
-  buffer1.fill(255, 0, 0);
-
-  buffer1.ellipse(0, 0, 200, 200);
-  buffer1.fill(255, 255, 255);
-  buffer1.textAlign(CENTER);
-  buffer1.text("PROBANDO \notro", 0, 0);
-  buffer1.pop();
-}
 
 function dibujarTexto3D() {
-  let miColorFront = color(230, 200, 90);
-  let miColorBack = color(sin(frameCount * 0.015) * 200 + 55, sin(frameCount * 0.02) * 200 + 55, sin(frameCount * 0.011) * 200 + 55);
+  let miColorFront = color(230, 200, 90,255);
+  let miColorBack = color(sin(frameCount * 0.015) * 200 + 55, sin(frameCount * 0.02) * 200 + 55, sin(frameCount * 0.011) * 200 + 55,255);
   let miEscala = ratioDeEscala * 100;
   let disTanciaSombra = 2.5;
   push();
-  buffer1.stroke(255);
-  // buffer1.ellipse(windowWidth / 2, windowHeight / 2, 150, 150);
-  buffer1.textSize(miEscala);
-  buffer1.textAlign(CENTER);
-  buffer1.textFont(miFuente);
-  //buffer1.textLeading(ratioDeEscala * 250);
-  pop();
-
-
-  push();
-  buffer1.fill(255);
-  // buffer1.rectMode(CENTER);
-  // buffer1.rect(0, 0, 100000, 5);
-  // buffer1.rect(0, 0, 5, 100000);
-  buffer1.textSize(miEscala);
-  //buffer1.textSize(10);
-
-  // textStyle(BOLD);
-  // buffer1.fill(miColorBack);
-  // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-  // buffer1.fill(miColorFront);
-  // textStyle(NORMAL);
-  // buffer1.text("Nuevo ciclo \ny vos estas \natenta", -windowWidth / 2, -100);
-  //buffer1.textFont(miFuente);
-  // buffer1.ellipse(windowWidth/2, windowHeight/2,200,200);
-  //buffer1.textLeading(ratioDeEscala * 250);
-  buffer1.fill(255, 255, 0);
-
-  // buffer1.ellipse(windowWidth / 2, windowHeight / 2, 150, 150);
-
-  buffer1.fill(miColorBack);
-  //buffer1.text("PROBANDO", windowWidth / 2, windowHeight / 2);
-
-
-  pop();
-
-
-
-
-
-
-
+  buffer2D.clear();
+  buffer2D.noStroke();
+  buffer2D.textSize(miEscala);
+  buffer2D.textAlign(CENTER);
+  buffer2D.textFont(miFuente);
+  buffer2D.textLeading(ratioDeEscala * 250);
+  
 
   if (mySound.currentTime() >= 0.01 && mySound.currentTime() <= 4) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("Nuevo ciclo y \nvos estás atenta", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("Nuevo ciclo y \nvos estás atenta", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("Nuevo ciclo y \nvos estás atenta", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("Nuevo ciclo y \nvos estás atenta", windowWidth / 2, windowHeight / 2);
     pop();
 
   }
@@ -395,242 +347,192 @@ function dibujarTexto3D() {
 
   if (mySound.currentTime() >= 5 && mySound.currentTime() <= 9) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("todo pasa en \ncualquier momento", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("todo pasa en \ncualquier momento", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("todo pasa en \ncualquier momento", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("todo pasa en \ncualquier momento", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
 
   if (mySound.currentTime() >= 9 && mySound.currentTime() <= 13) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("No quiero que \ncedamos el control", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("No quiero que \ncedamos el control", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("No quiero que \ncedamos el control", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("No quiero que \ncedamos el control", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 13 && mySound.currentTime() <= 17) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("Si a cada paso \ndimos lo mejor", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("Si a cada paso \ndimos lo mejor", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("Si a cada paso \ndimos lo mejor", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("Si a cada paso \ndimos lo mejor", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 17 && mySound.currentTime() <= 22) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("Vos tan zen \nestado de meditacion", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("Vos tan zen \nestado de meditacion", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("Vos tan zen \nestado de meditacion", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("Vos tan zen \nestado de meditacion", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 22 && mySound.currentTime() <= 29) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("Yo en silencio \nescuchando tu voz", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("Yo en silencio \nescuchando tu voz", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("Yo en silencio \nescuchando tu voz", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("Yo en silencio \nescuchando tu voz", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 31 && mySound.currentTime() <= 37) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("Yo en silencio \nescuchando tu voz", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("Yo en silencio \nescuchando tu voz", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("Yo en silencio \nescuchando tu voz", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("Yo en silencio \nescuchando tu voz", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
 
   if (mySound.currentTime() >= 59 && mySound.currentTime() <= 63) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("Bienvenidas \nlas murallas", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("Bienvenidas \nlas murallas", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("Bienvenidas \nlas murallas", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("Bienvenidas \nlas murallas", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 64 && mySound.currentTime() <= 67) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("que vamos \na derribar", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("que vamos \na derribar", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("que vamos \na derribar", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("que vamos \na derribar", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 68.5 && mySound.currentTime() <= 72) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("la gran flecha \nya avanza", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("la gran flecha \nya avanza", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("la gran flecha \nya avanza", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("la gran flecha \nya avanza", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
 
   if (mySound.currentTime() >= 73 && mySound.currentTime() <= 76) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("cruzando el \nhumedal", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("cruzando el \nhumedal", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("cruzando el \nhumedal", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("cruzando el \nhumedal", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 78 && mySound.currentTime() <= 82) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("son tus ojos \nlos que marchan", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("son tus ojos \nlos que marchan", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("son tus ojos \nlos que marchan", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("son tus ojos \nlos que marchan", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 82 && mySound.currentTime() <= 85) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("que se alejan \ndel lugar", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("que se alejan \ndel lugar", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("que se alejan \ndel lugar", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("que se alejan \ndel lugar", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 86 && mySound.currentTime() <= 91) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("yo lamiendote \nlas llagas", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("yo lamiendote \nlas llagas", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("yo lamiendote \nlas llagas", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("yo lamiendote \nlas llagas", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 92 && mySound.currentTime() <= 95) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("vos volviendote \na quemar", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("vos volviendote \na quemar", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("vos volviendote \na quemar", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("vos volviendote \na quemar", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 113 && mySound.currentTime() <= 119) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("si sabés que \nya no dás más", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("si sabés que \nya no dás más", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("si sabés que \nya no dás más", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("si sabés que \nya no dás más", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 121 && mySound.currentTime() <= 126) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("¿Por qué no \nlo vas a intentar?", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("¿Por qué no \nlo vas a intentar?", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("¿Por qué no \nlo vas a intentar?", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    textStyle(NORMAL);
+    buffer2D.text("¿Por qué no \nlo vas a intentar?", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 128 && mySound.currentTime() <= 131) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("por lo menos hoy", -windowWidth / 2 + disTanciaSombra, -100 + 5);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("por lo menos hoy", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("por lo menos hoy", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("por lo menos hoy", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
@@ -638,75 +540,60 @@ function dibujarTexto3D() {
 
   if (mySound.currentTime() >= 132 && mySound.currentTime() <= 135) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("un poco de amor", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("un poco de amor", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("un poco de amor", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("un poco de amor", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
 
   if (mySound.currentTime() >= 136 && mySound.currentTime() <= 139) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("por lo mismo", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("por lo mismo", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("por lo mismo", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("por lo mismo", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 141 && mySound.currentTime() <= 143) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("a los mismos", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("a los mismos", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("a los mismos", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("a los mismos", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 145.5 && mySound.currentTime() <= 148.5) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("por lo mismo", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("por lo mismo", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("por lo mismo", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("por lo mismo", windowWidth / 2, windowHeight / 2);
     pop();
   }
 
   if (mySound.currentTime() >= 150 && mySound.currentTime() <= 153) {
     push();
-    buffer1.translate(windowWidth, windowHeight / 2)
-    buffer1.textSize(miEscala);
-    buffer1.fill(miColorBack);
-    // textStyle(BOLD);
-    buffer1.text("a los mismos", -windowWidth / 2 + disTanciaSombra, -100 + disTanciaSombra);
-    buffer1.fill(miColorFront);
-    // textStyle(NORMAL);
-
-    buffer1.text("a los mismos", -windowWidth / 2, -100);
+    buffer2D.textSize(miEscala);
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("a los mismos", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("a los mismos", windowWidth / 2, windowHeight / 2);
     pop();
   }
-
+  pop();
 }
 
 
@@ -732,6 +619,8 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   buffer1.resizeCanvas(windowWidth, windowHeight);
   buffer2.resizeCanvas(windowWidth, windowHeight);
+  buffer2D.resizeCanvas(windowWidth, windowHeight);
+
   background(0);
   for (let i = 0; i < misPinceles.length; i++) {
     //misPinceles[i].mover();
