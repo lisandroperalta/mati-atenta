@@ -324,6 +324,8 @@ function dibujarTexto3D() {
   let miEscala = ratioDeEscala * 100;
   let disTanciaSombra = 2.5;
   push();
+  buffer1.tint(255);
+
   buffer2D.clear();
   buffer2D.noStroke();
   buffer2D.textSize(miEscala);
