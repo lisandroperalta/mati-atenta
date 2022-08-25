@@ -131,9 +131,9 @@ function draw() {
     buffer2.push();
     buffer2.noStroke();
 
-    let noiseTranslateX = map(noise(frameCount * 0.005 + 150), 0, 1, -5, 5);
-    let noiseTranslateY = map(noise(frameCount * 0.005), 0, 1, -5, 5);
-    let noiseScale = map(noise(frameCount * 0.005 + 750), 0, 1, 0.999, 1.01);
+    let noiseTranslateX = map(noise(frameCount * 0.005 + 150), 0, 1, -7, 7);
+    let noiseTranslateY = map(noise(frameCount * 0.005), 0, 1, -7, 7);
+    let noiseScale = map(noise(frameCount * 0.005 + 750), 0, 1, 0.998, 1.02);
 
     push();
     buffer2.translate(noiseTranslateX, noiseTranslateY); //hago transformaciones
@@ -148,7 +148,7 @@ function draw() {
     buffer2.texture(buffer1); //meto la textura de salida
     buffer2.scale(noiseScale); //hago transformaciones
     if (mySound.currentTime() >= 131 && mySound.currentTime() <= 150) {
-      buffer2.scale(0.99); //hago transformaciones
+      buffer2.scale(0.98); //hago transformaciones
     }
     if (mySound.currentTime() >= 131 && mySound.currentTime() <= 160) {
       buffer2.rotate(radians(0.2));
@@ -595,6 +595,26 @@ function dibujarTexto3D() {
     buffer2D.text("a los mismos", windowWidth / 2, windowHeight / 2);
     pop();
   }
+
+
+
+
+  if (mySound.currentTime() >= 218 && mySound.currentTime() <= 260) {
+    push();
+    buffer2D.textSize(miEscala);
+    buffer2D.rectMode(CENTER);
+    buffer2D.fill(0,150);
+    buffer2D.rect(windowWidth/2, windowHeight/2, 1000, 500, 20,20,20,20)
+    buffer2D.fill(miColorBack);
+    textStyle(BOLD);
+    buffer2D.text("Muñoz - Atenta \nLisandro Peralta", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.fill(miColorFront);
+    buffer2D.text("Muñoz - Atenta \nLisandro Peralta", windowWidth / 2, windowHeight / 2);
+    pop();
+  }
+
+
+
   pop();
 }
 
@@ -609,10 +629,11 @@ function reproducir() {
     mySound.pause();
   } else {
     mySound.play();
-    //mySound.jump(127); //////////////////ATENTO A ESTO
+  }
+  if (mySound.currentTime() >= 218){
+  mySound.jump(0); //////////////////ATENTO A ESTO
   }
 
-  //
   background(0);
 
 }
