@@ -638,7 +638,7 @@ function dibujarTexto3D() {
      Arte: Gegia Veronico
      Vj: Lisandro Peralta*/
 
-    buffer2D.text("Muñoz - Atenta \n\nMusica y letra x Matías Rincon \nProducido x Diego Iribe y Pancho Barreña \nMezcla y grabacion x Pancho Barreña en Estudios Pierrot \nMastering x Nicolas Carlino \nVoz: Matías Rincon \nBateria: Emiliano Rimoldi \nGuitarras: Diego Iribe \nBajo: Francisco Di Meglio \nTeclas: Luca Sobenko \n \nArte: Gegia Veronico \nVj: Lisandro Peralta", windowWidth / 2, windowHeight / 8);
+    buffer2D.text("Muñoz - Atenta \n\nMusica y letra x Matías Rincon \nProducido x Diego Iribe y Pancho Barreña \nMezcla y grabación x Pancho Barreña en Estudios Pierrot \nMastering x Nicolas Carlino \nVoz: Matías Rincon \nBatería: Emiliano Rimoldi \nGuitarras: Diego Iribe \nBajo: Francisco Di Meglio \nTeclas: Luca Sobenko \n \nArte: Gegia Veronico \nVj: Lisandro Peralta", windowWidth / 2, windowHeight / 8);
     pop();
   }
 
