@@ -601,15 +601,37 @@ function dibujarTexto3D() {
 
   if (mySound.currentTime() >= 218 && mySound.currentTime() <= 260) {
     push();
-    buffer2D.textSize(miEscala);
     buffer2D.rectMode(CENTER);
     buffer2D.fill(0,150);
-    buffer2D.rect(windowWidth/2, windowHeight/2, 1000, 500, 20,20,20,20)
-    buffer2D.fill(miColorBack);
-    textStyle(BOLD);
-    buffer2D.text("Muñoz - Atenta \nLisandro Peralta", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
-    buffer2D.fill(miColorFront);
-    buffer2D.text("Muñoz - Atenta \nLisandro Peralta", windowWidth / 2, windowHeight / 2);
+    buffer2D.rect(windowWidth/2, windowHeight/2, windowWidth, windowHeight, 20,20,20,20)
+   // buffer2D.fill(miColorBack);
+  //  textStyle(BOLD);
+//    buffer2D.text("Muñoz - Atenta \nLisandro Peralta", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+buffer2D.textSize(miEscala*0.5);
+
+buffer2D.textLeading(ratioDeEscala * 50);
+buffer2D.textFont("sans-serif");
+textStyle(NORMAL); 
+buffer2D.fill(miColorFront);
+   /*
+   
+    Muñoz - Atenta
+
+    Musica y letra x Matías Rincon
+    Producido x Diego Iribe y Pancho Barreña
+    Mezcla y grabacion x Pancho Barreña en Estudios Pierrot
+    Mastering x Nicolas Carlino
+    
+    Voz: Matías Rincon
+    Bateria: Emiliano Rimoldi
+    Guitarras: Diego Iribe
+    Bajo: Francisco Di Meglio
+    Teclas: Luca Sobenko
+    
+    Arte: Eugenia Veronico
+    Vj: Lisandro Peralta*/
+   
+    buffer2D.text("Muñoz - Atenta \n\nMusica y letra x Matías Rincon \nProducido x Diego Iribe y Pancho Barreña \nMezcla y grabacion x Pancho Barreña en Estudios Pierrot \nMastering x Nicolas Carlino \nVoz: Matías Rincon \nBateria: Emiliano Rimoldi \nGuitarras: Diego Iribe \nBajo: Francisco Di Meglio \nTeclas: Luca Sobenko \n \nArte: Eugenia Veronico \nVj: Lisandro Peralta", windowWidth / 2, windowHeight / 8);
     pop();
   }
 
@@ -629,9 +651,10 @@ function reproducir() {
     mySound.pause();
   } else {
     mySound.play();
+   // mySound.jump(217);
   }
   if (mySound.currentTime() >= 218){
-  mySound.jump(0); //////////////////ATENTO A ESTO
+  mySound.jump(0); /////////////00000000000000000000000000000000000000000000000000000000000000000000000000000000000000/////ATENTO A ESTO
   }
 
   background(0);
