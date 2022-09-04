@@ -14,7 +14,7 @@ let misTexturasGotitas = [];
 
 let ratioDeEscala = 1;
 let cargando = true;
-let cantAssetsTotal = 32;
+let cantAssetsTotal = 37;
 let cantAssetsCargados = 0;
 
 
@@ -34,7 +34,7 @@ function setup() {
 
 
 
-  mySound = loadSound('assets/atentaOGG.ogg', cargueAsset);
+  mySound = loadSound('assets/atentaMP3.mp3', cargueAsset);
   // miFuente = loadFont('assets/qanoar.personal-use.otf', cargueAsset);
   miDedo = loadImage('assets/dedo.png', cargueAsset);
   miPlay = loadImage('assets/play.png', cargueAsset);
@@ -68,7 +68,7 @@ function setup() {
   }
   background(0);
   frameRate(24);
-   smooth();
+  smooth();
 
   push();
   imageMode(CENTER);
@@ -105,7 +105,7 @@ function draw() {
       misPinceles[i].dibujar3d(i);
     }
 
-    buffer2D.fill(255,255,255,255);
+    buffer2D.fill(255, 255, 255, 255);
     dibujarTexto3D(); ///////////// HERE I DRAW THE TEXT
 
     buffer1.texture(buffer2D); // meto la textura de salida en la entrada
@@ -113,7 +113,7 @@ function draw() {
     buffer1.translate(windowWidth / 2, windowHeight / 2); //CORRIJO TRANSLATE DE WEBGL
     buffer1.plane(windowWidth, windowHeight, 100, 100); // dibujo la textura de salida en la entrada  
     buffer1.pop();
-    
+
 
     if (empezo == false) {
 
@@ -167,14 +167,21 @@ function draw() {
     ///fin del principal
   } else {
     //aca hago todo lo que se va amostrar mientras cargo
+    push();
     background(0);
     fill(255);
     textSize(24);
     textAlign(CENTER);
     textFont(miFuente);
 
-    text("Cargando " + cantAssetsCargados, width / 2, height / 2);
+    text("Cargando  " + cantAssetsCargados, width / 2, height / 2);
+    textSize(45);
 
+    textFont("serif");
+
+    text(cantAssetsCargados + "/" + cantAssetsTotal, width / 2, height / 2 + ratioDeEscala * 200);
+
+    pop();
   }
 
   ////fin del draw
@@ -319,8 +326,8 @@ function dibujarDedo() {
 
 
 function dibujarTexto3D() {
-  let miColorFront = color(230, 200, 90,255);
-  let miColorBack = color(sin(frameCount * 0.015) * 200 + 55, sin(frameCount * 0.02) * 200 + 55, sin(frameCount * 0.011) * 200 + 55,255);
+  let miColorFront = color(230, 200, 90, 255);
+  let miColorBack = color(sin(frameCount * 0.015) * 200 + 55, sin(frameCount * 0.02) * 200 + 55, sin(frameCount * 0.011) * 200 + 55, 255);
   let miEscala = ratioDeEscala * 100;
   let disTanciaSombra = 2.5;
   push();
@@ -332,7 +339,7 @@ function dibujarTexto3D() {
   buffer2D.textAlign(CENTER);
   buffer2D.textFont(miFuente);
   buffer2D.textLeading(ratioDeEscala * 250);
-  
+
 
   if (mySound.currentTime() >= 0.01 && mySound.currentTime() <= 4) {
     push();
@@ -602,35 +609,35 @@ function dibujarTexto3D() {
   if (mySound.currentTime() >= 218 && mySound.currentTime() <= 260) {
     push();
     buffer2D.rectMode(CENTER);
-    buffer2D.fill(0,150);
-    buffer2D.rect(windowWidth/2, windowHeight/2, windowWidth, windowHeight, 20,20,20,20)
-   // buffer2D.fill(miColorBack);
-  //  textStyle(BOLD);
-//    buffer2D.text("Muñoz - Atenta \nLisandro Peralta", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
-buffer2D.textSize(miEscala*0.5);
+    buffer2D.fill(0, 150);
+    buffer2D.rect(windowWidth / 2, windowHeight / 2, windowWidth, windowHeight, 20, 20, 20, 20)
+    // buffer2D.fill(miColorBack);
+    //  textStyle(BOLD);
+    //    buffer2D.text("Muñoz - Atenta \nLisandro Peralta", windowWidth / 2 + disTanciaSombra, windowHeight / 2 + disTanciaSombra);
+    buffer2D.textSize(miEscala * 0.5);
 
-buffer2D.textLeading(ratioDeEscala * 50);
-buffer2D.textFont("sans-serif");
-textStyle(NORMAL); 
-buffer2D.fill(miColorFront);
-   /*
-   
-    Muñoz - Atenta
+    buffer2D.textLeading(ratioDeEscala * 50);
+    buffer2D.textFont("sans-serif");
+    textStyle(NORMAL);
+    buffer2D.fill(miColorFront);
+    /*
+    
+     Muñoz - Atenta
 
-    Musica y letra x Matías Rincon
-    Producido x Diego Iribe y Pancho Barreña
-    Mezcla y grabacion x Pancho Barreña en Estudios Pierrot
-    Mastering x Nicolas Carlino
-    
-    Voz: Matías Rincon
-    Bateria: Emiliano Rimoldi
-    Guitarras: Diego Iribe
-    Bajo: Francisco Di Meglio
-    Teclas: Luca Sobenko
-    
-    Arte: Eugenia Veronico
-    Vj: Lisandro Peralta*/
-   
+     Musica y letra x Matías Rincon
+     Producido x Diego Iribe y Pancho Barreña
+     Mezcla y grabacion x Pancho Barreña en Estudios Pierrot
+     Mastering x Nicolas Carlino
+     
+     Voz: Matías Rincon
+     Bateria: Emiliano Rimoldi
+     Guitarras: Diego Iribe
+     Bajo: Francisco Di Meglio
+     Teclas: Luca Sobenko
+     
+     Arte: Eugenia Veronico
+     Vj: Lisandro Peralta*/
+
     buffer2D.text("Muñoz - Atenta \n\nMusica y letra x Matías Rincon \nProducido x Diego Iribe y Pancho Barreña \nMezcla y grabacion x Pancho Barreña en Estudios Pierrot \nMastering x Nicolas Carlino \nVoz: Matías Rincon \nBateria: Emiliano Rimoldi \nGuitarras: Diego Iribe \nBajo: Francisco Di Meglio \nTeclas: Luca Sobenko \n \nArte: Eugenia Veronico \nVj: Lisandro Peralta", windowWidth / 2, windowHeight / 8);
     pop();
   }
@@ -651,10 +658,10 @@ function reproducir() {
     mySound.pause();
   } else {
     mySound.play();
-   // mySound.jump(217);
+    // mySound.jump(217);
   }
-  if (mySound.currentTime() >= 218){
-  mySound.jump(0); /////////////00000000000000000000000000000000000000000000000000000000000000000000000000000000000000/////ATENTO A ESTO
+  if (mySound.currentTime() >= 218) {
+    mySound.jump(0); /////////////00000000000000000000000000000000000000000000000000000000000000000000000000000000000000/////ATENTO A ESTO
   }
 
   background(0);
