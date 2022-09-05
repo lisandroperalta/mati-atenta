@@ -34,8 +34,9 @@ function preload() {
 function setup() {
   // pixelDensity(1);
 
+  soundFormats('ogg', 'mp3');
 
-  mySound = loadSound('assets/atentaOGG.ogg', cargueAsset);
+  mySound = loadSound('assets/atenta.ogg', cargueAsset);
 
 //  mySound = loadSound('assets/atentaMp3.mp3', cargueAsset);
   // miFuente = loadFont('assets/qanoar.personal-use.otf', cargueAsset);
