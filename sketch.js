@@ -1,3 +1,5 @@
+//124 64 181 186
+
 let buffer1, buffer2, buffer2D;
 
 let mySound;
@@ -33,8 +35,9 @@ function setup() {
   // pixelDensity(1);
 
 
+  mySound = loadSound('assets/atentaOGG.ogg', cargueAsset);
 
-  mySound = loadSound('assets/atentaMp3.mp3', cargueAsset);
+//  mySound = loadSound('assets/atentaMp3.mp3', cargueAsset);
   // miFuente = loadFont('assets/qanoar.personal-use.otf', cargueAsset);
   miDedo = loadImage('assets/dedo.png', cargueAsset);
   miPlay = loadImage('assets/play.png', cargueAsset);
@@ -59,7 +62,9 @@ function setup() {
   ratioDeEscala = constrain(windowWidth / 1920, 0.3, 1.2);
 
   tamanioFuente = windowWidth / 20;
-  button = createButton("⏯");
+ button = createButton("");
+//    button = createButton("⏯");
+
   button.position(20, 20);
   button.mousePressed(reproducir);
   for (let i = 0; i < 29; i++) {
@@ -121,7 +126,7 @@ function draw() {
       imageMode(CENTER);
       buffer1.tint(255, 150);
       let escalaPlay = ratioDeEscala * 250;
-      buffer1.image(miPlay, 0 - escalaPlay / 2, 0 - escalaPlay / 2, escalaPlay, escalaPlay);
+     // buffer1.image(miPlay, 0 - escalaPlay / 2, 0 - escalaPlay / 2, escalaPlay, escalaPlay);
       pop();
 
 
@@ -174,12 +179,12 @@ function draw() {
     textAlign(CENTER);
     textFont(miFuente);
 
-    text("Cargando  " + cantAssetsCargados, width / 2, height / 2);
+  //  text("Cargando  " + cantAssetsCargados, width / 2, height / 2);
     textSize(45);
 
     textFont("serif");
 
-    text(cantAssetsCargados + "/" + cantAssetsTotal, width / 2, height / 2 + ratioDeEscala * 200);
+   // text(cantAssetsCargados + "/" + cantAssetsTotal, width / 2, height / 2 + ratioDeEscala * 200);
 
     pop();
   }
@@ -638,7 +643,7 @@ function dibujarTexto3D() {
      Arte: Gegia Veronico
      Vj: Lisandro Peralta*/
 
-    buffer2D.text("Muñoz - Atenta \n\nMusica y letra x Matías Rincon \nProducido x Diego Iribe y Pancho Barreña \nMezcla y grabación x Pancho Barreña en Estudios Pierrot \nMastering x Nicolas Carlino \nVoz: Matías Rincon \nBatería: Emiliano Rimoldi \nGuitarras: Diego Iribe \nBajo: Francisco Di Meglio \nTeclas: Luca Sobenko \n \nArte: Gegia \nVj: Lisandro Peralta", windowWidth / 2, windowHeight / 8);
+    buffer2D.text("Muñoz - Atenta \n\nMusica y letra x Matías Rincon \nProducido x Diego Iribe y Pancho Barreña \nMezcla y grabación x Pancho Barreña en Estudios Pierrot \nMastering x Nicolas Carlino \nVoz: Matías Rincon \nBatería: Emiliano Rimoldi \nGuitarras: Diego Iribe \nBajo: Francisco Di Meglio \nTeclas: Luca Sobenko \n \nArte: Gegia Veronico \nVj: Lisandro Peralta", windowWidth / 2, windowHeight / 8);
     pop();
   }
 
